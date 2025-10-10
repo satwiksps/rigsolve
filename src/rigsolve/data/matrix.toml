@@ -1,0 +1,2145 @@
+[meta]
+"schema_version" = 1
+"matrix_version" = "2026.08.15"
+generated = "2026-08-15"
+description = "Offline seed: representative upstream artifacts and binary-build axes. Every fact is tier 0; no install, import, kernel, glibc, or unencoded GPU-architecture claim is implied."
+
+[[wheel]]
+package = "bitsandbytes"
+version = "0.50.1"
+python = "py3"
+abi = "none"
+platform = "macosx_14_0_arm64"
+url = "https://files.pythonhosted.org/packages/85/b0/d2eb57f5ff40bea2aa4037fcd07b8a8c8e012bbdd36b6f4954c9cb55041d/bitsandbytes-0.50.1-py3-none-macosx_14_0_arm64.whl"
+filename = "bitsandbytes-0.50.1-py3-none-macosx_14_0_arm64.whl"
+size = 123495
+sha256 = "5bac232206d9568fb560db566b522e230af95ba3fb833a1023744625c66f1d6b"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/bitsandbytes/json"
+etag = "\"0ohpVz473HNvc5xNG4g98w\""
+
+[[wheel]]
+package = "bitsandbytes"
+version = "0.50.1"
+python = "py3"
+abi = "none"
+platform = "manylinux_2_24_aarch64"
+url = "https://files.pythonhosted.org/packages/9e/1d/44b2e6e33acf81c656b0e44cf42431b0e2ef2562be0880034632763dd520/bitsandbytes-0.50.1-py3-none-manylinux_2_24_aarch64.whl"
+filename = "bitsandbytes-0.50.1-py3-none-manylinux_2_24_aarch64.whl"
+size = 23777389
+sha256 = "55ec205fa7073bbe680f905b16d66666be4b4cf7e85ab3d28b5d39d73f153db6"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/bitsandbytes/json"
+etag = "\"0ohpVz473HNvc5xNG4g98w\""
+
+[[wheel]]
+package = "bitsandbytes"
+version = "0.50.1"
+python = "py3"
+abi = "none"
+platform = "manylinux_2_24_x86_64"
+url = "https://files.pythonhosted.org/packages/1f/6b/aa0c77ad6eb11c364502ee67620226b4bb42a58ce94654485eacab1b97c1/bitsandbytes-0.50.1-py3-none-manylinux_2_24_x86_64.whl"
+filename = "bitsandbytes-0.50.1-py3-none-manylinux_2_24_x86_64.whl"
+size = 40988204
+sha256 = "649b4348c24c05c406a3b8fa9ed6ea00ffecb9dc93dcf838af1a2783844bf3e3"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/bitsandbytes/0.50.1/json"
+
+[[wheel]]
+package = "bitsandbytes"
+version = "0.50.1"
+python = "py3"
+abi = "none"
+platform = "win_amd64"
+url = "https://files.pythonhosted.org/packages/1e/47/bec1bc02e782ed11d50e04b2bd3f32c57694a414a72ddf311ecc953c3b6a/bitsandbytes-0.50.1-py3-none-win_amd64.whl"
+filename = "bitsandbytes-0.50.1-py3-none-win_amd64.whl"
+size = 37961070
+sha256 = "86f76e8a3278fbbfc3fa0d79d1c4e706ebc214babd57f0ea30e2da509bbdaad5"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/bitsandbytes/json"
+etag = "\"0ohpVz473HNvc5xNG4g98w\""
+
+[[wheel]]
+package = "bitsandbytes"
+version = "0.50.1"
+python = "py3"
+abi = "none"
+platform = "win_arm64"
+url = "https://files.pythonhosted.org/packages/3c/d8/0900bd9d8826851e1bca731c9f48f10709471e457877e0479502a5f0cd75/bitsandbytes-0.50.1-py3-none-win_arm64.whl"
+filename = "bitsandbytes-0.50.1-py3-none-win_arm64.whl"
+size = 1058780
+sha256 = "b79489c5067e187b37a044faa567d9affa8ad75f690f6cd4b8712005789c5365"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/bitsandbytes/json"
+etag = "\"0ohpVz473HNvc5xNG4g98w\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3+cu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256040585
+sha256 = "2605b2653e7b9d6615bbb154896ae4d3f0b95d3120af7a6374ee97092e61df02"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3"
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256040057
+sha256 = "f25da18657a87fc83dc1bfb8b7751b82246e9db355510226b674fd437c34b5fb"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3"
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3"
+"cuda_line" = "12"
+torch = "2.9"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3+cu12torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.9cxx11abitrue"
+size = 253780426
+sha256 = "4e2f9e39313266b1544b68138b15b91ee6221eccf14f7902b7c6620351340810"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3"
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3"
+"cuda_line" = "13"
+torch = "2.9"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu13torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3+cu13torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu13torch2.9cxx11abitrue"
+size = 244226500
+sha256 = "a4b43bd016f5d475dc34a87aa91b5a239bd0e8972c13f4fc32839b4032465d21"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3"
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = false
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abifalse"
+size = 255951556
+sha256 = "63d73b795e3f9a07a7cfd5039d41cf02b2f72877191d6ac331c8729b6976d082"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = false
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abifalse"
+size = 255974406
+sha256 = "d6683965bc0b230eff22c5c154bb39639c1bb39a18488943ef9fccde200e020c"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abifalse"
+size = 255985266
+sha256 = "72f0fbf4671f1e9b496450d29ac0cab92c1c93c0abd88b819444021e87afa78d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = false
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abifalse"
+size = 255949215
+sha256 = "83abb9f78260ebdc5b059623ccbae4928394acd805f0ffb3e5d9bf9045751f00"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = true
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abitrue"
+size = 255991719
+sha256 = "4015d80ec6a0cd9f14d2140ae536d25adf567872b845a1507c5b9ac2b26b7ab5"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = true
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abitrue"
+size = 256008166
+sha256 = "ce059795d96a9b145c9a4e499899fb5a6109127d0639677d05204839caa04251"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abitrue"
+size = 256007935
+sha256 = "4198fccfddfb25b22538f593e556e4915705c18e36133cc235df4b9e9d48763e"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.4"
+cxx11abi = true
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.4cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.4cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.4cxx11abitrue"
+size = 255987268
+sha256 = "f9cf8a1a779ca468ca11ef7d2eb90c72db20400fb5072558f76086cb8326a8fa"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = false
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abifalse"
+size = 255955368
+sha256 = "37765610c75afac6c18d47384e7071f8a8d2c66682b2c6ddfd6e9c724a55016a"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = false
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abifalse"
+size = 255979266
+sha256 = "1c455db7a1e5d58e9d43370ecfc75a3a2eb1e37ec12353db66d12c23dbbc3ac6"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abifalse"
+size = 255984753
+sha256 = "c35f2b3039c000e1dce37739f6edc21f28eb67773b74b3d13b81bab974f59bf6"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = false
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abifalse"
+size = 255984953
+sha256 = "2cd4be70c2839cbca6217f9553dd5f8fbfc1faacf79ac21a16b757cde0f189f5"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = false
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abifalse"
+size = 255955761
+sha256 = "2860fc8a411f24cb72d514b908e311d5dbde63f7813954b1bd0da6a172a47ae3"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = true
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abitrue"
+size = 255995753
+sha256 = "e5e4778fb50d62593bcf38613d354f33ed8c7ee5c7db5c427aed49612b855459"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = true
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abitrue"
+size = 256013295
+sha256 = "341710e49f9a7facf9f6a065b5a19e3d80632c4270e7cbed0df3cac76b3a5adb"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abitrue"
+size = 256015871
+sha256 = "5a784160719eb9cb43c3e48cd9245a1debe00aa901fcdb35b65af0b488d9e820"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = true
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abitrue"
+size = 256015172
+sha256 = "6b5897dc3de81427f4fba5f450f90d33c90222993c1196b49710c90f181238dc"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.5"
+cxx11abi = true
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.5cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.5cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.5cxx11abitrue"
+size = 255993098
+sha256 = "8fe6d52a6702c906c5232967bc1cf5d2a6b07161943b06850137d9d4a8b58bfc"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = false
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abifalse"
+size = 256007675
+sha256 = "16abcd37db1928841f346d65972d083a3556c4ba5acc81dcde8eb495247f1154"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = false
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abifalse"
+size = 256022753
+sha256 = "527e7466247e0c5ffb5aedb4fc78eb606ff91957d5e02cbbb988c66eeecdebf3"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abifalse"
+size = 256026598
+sha256 = "22b9427d68daa40a75a1ce06bd4bfaa61b9a98aa00d61de8319f937c7a26d3b1"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = false
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abifalse"
+size = 256027638
+sha256 = "05870d90b33558c21ae745906175a7567cbf5ea0f37d7405bb54c9ca2dc30c87"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = false
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abifalse"
+size = 256003309
+sha256 = "c48f22a05390b5dd2b31a6e2a343d314974c8fd61d8457baa14563b924eefd9d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = true
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abitrue"
+size = 256007774
+sha256 = "3d5f748c8dd9f8743e0e0bcb95861dc95ba606cffd5be2d25a61e13c73f3eb49"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = true
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abitrue"
+size = 256022444
+sha256 = "ed3f840eacdf5b2f0d5f0fafd712b45e8a1d79d90f9dcc9a10407b6e86d3dd7d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abitrue"
+size = 256026511
+sha256 = "e56f2a31b196a0228e8b60f18750ecbb84ceec20c340856b453997ecc5ea8a0b"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = true
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abitrue"
+size = 256027727
+sha256 = "ee3076565b6635a01e95ba8da82310a6cf6cfad1faf34ef6af22c346698788e6"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.6"
+cxx11abi = true
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.6cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.6cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.6cxx11abitrue"
+size = 256003249
+sha256 = "f9b8958f588cf72b494fb91e065842fa4fcae8f34a6d3b792c7ab279bb6115cf"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = false
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abifalse"
+size = 256007238
+sha256 = "4d0bca2f1adbf6febb0535176d8e31a3bda963ca17ecb42565838fe9669eaff9"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = false
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abifalse"
+size = 256027487
+sha256 = "ee9bbbfe515e38d5dfed2ecd71b57c75d5b7e239a1a8a86b92c1771d839a93c3"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abifalse"
+size = 256029259
+sha256 = "2d5b7908c73a04e7884e12d2ad0a92245f5a811715045e317341ee66325262c4"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = false
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abifalse"
+size = 256027105
+sha256 = "2510ac39584639907bbc1ceb6512f3b503f1e6f1b357c6b8ab36eb5b7bb6cc70"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = false
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abifalse"
+size = 256007400
+sha256 = "66b63be072e27019b0b05a75f15c73b1c2f17fd7f0238d54a98c25eaa0c17a4d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = true
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abitrue"
+size = 256007352
+sha256 = "52e290486e8bf00fd48e9993251b492e6500450ee79e91197671719f60229446"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = true
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abitrue"
+size = 256027275
+sha256 = "a37b7740067ab5f5e257ad2921265fb9f4227f3907ceda4a9bd1237270c7f308"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abitrue"
+size = 256029263
+sha256 = "f87164bb919f5597cb94f7485196be6ac7842b71d7bf8e9f8e9133b9045ab5ea"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = true
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abitrue"
+size = 256027344
+sha256 = "a01fa390acf7369fd110d64e74466f137ae9619e3e7322ae4febdc4f78c33732"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.7"
+cxx11abi = true
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.7cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.7cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.7cxx11abitrue"
+size = 256007526
+sha256 = "1f43bbeb2056c047b83583292554048e955abe88032e8acd06399210ac4dd43d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256026338
+sha256 = "8ef7cecc1885a535535033812c44997fede36c22717de87fc23b056ff9cb379d"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256043903
+sha256 = "b283b5a30871c8beb89443714d58981d3370ba8c161232d0f0e263b438018ea1"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256039724
+sha256 = "3a22801651c027c058f0f36d49a176736bb06b3a16558241f89170f46c300b90"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiFALSE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256039803
+sha256 = "9ce3be914b467d8e326e25350a1d4794be90894780e1e93b0466e508902dfcae"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = false
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiFALSE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abifalse"
+size = 256019348
+sha256 = "46b710919147f5ca0914d0783c52fd64c6f262c7c734e5059aa744bd0b205fc5"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp310"
+abi = "cp310"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256026375
+sha256 = "93f44772f2d63814086666b30dfa1808b96ca5cbd2efe292a96cafa7e6e7df2e"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp311"
+abi = "cp311"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiTRUE-cp311-cp311-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256044010
+sha256 = "3807faf34d263ad0c3dff6f07c7ebdd27aef4a2614ef124db2afee4578ef7232"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp312"
+abi = "cp312"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256040449
+sha256 = "9a08775a6be3358e3b691ed97f7cb90ad4e9eb6a912e8bce680c2edb7cf3d86e"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp313"
+abi = "cp313"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256039817
+sha256 = "4e98777b43758707554bae4b29c611545a0456b64fe8b9dfe5ccc619e687a203"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flash-attn"
+version = "2.8.3.post1"
+"cuda_line" = "12"
+torch = "2.8"
+cxx11abi = true
+python = "cp39"
+abi = "cp39"
+platform = "linux_x86_64"
+url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3.post1%2Bcu12torch2.8cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+filename = "flash_attn-2.8.3.post1+cu12torch2.8cxx11abiTRUE-cp39-cp39-linux_x86_64.whl"
+"build_tag" = "cu12torch2.8cxx11abitrue"
+size = 256019269
+sha256 = "272d350fe61cfb336ee59232b95d6f5eefc1ed30dcbed7836cd8428fb6a90cf5"
+tier = 0
+[wheel.source]
+kind = "gh-release"
+harvested = "2026-08-15"
+url = "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+etag = "W/\"657c1a1a4d4e72ec4e8b43317ca6fe34d48451857c26d12c4d8f594aceb63188\""
+
+[[wheel]]
+package = "flashinfer-python"
+version = "0.6.17"
+python = "py3"
+abi = "none"
+platform = "any"
+url = "https://files.pythonhosted.org/packages/da/6f/679f5fa5471705e7ae40712063222c65711b2cb864624f25192fc9de77bf/flashinfer_python-0.6.17-py3-none-any.whl"
+filename = "flashinfer_python-0.6.17-py3-none-any.whl"
+size = 16025081
+sha256 = "ab7ce3aec42faf2f6079aa840c2407ac00ecd277a0524cdb708a8ff4a64dad90"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/flashinfer-python/0.6.17/json"
+
+[[wheel]]
+package = "transformers"
+version = "5.15.0"
+python = "py3"
+abi = "none"
+platform = "any"
+url = "https://files.pythonhosted.org/packages/d8/43/81355710a4c84e9420e11a86d41a5364deb561f2ef36dfdf254a07371bbb/transformers-5.15.0-py3-none-any.whl"
+filename = "transformers-5.15.0-py3-none-any.whl"
+size = 11749280
+sha256 = "d7f007736f67749ae9490c4f8cb5d30b452ae2d68c8675e50ba8d63ea7feb107"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/transformers/5.15.0/json"
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp310"
+abi = "cp310"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/ec/ea/629cc37436ca5df93ce98956d09cd2ca1498bfee8ef4972d2fe48b9f958c/triton-3.7.1-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp310-cp310-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184551013
+sha256 = "3daf64305d6cea88d3334c65ebc9bcd0c64c9564a977084366aa768d57cbcf64"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp310"
+abi = "cp310"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/15/76/c79c34311625227a288df3e483fc5cdf3d596624cbd4b4758c4cbdc14af3/triton-3.7.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197596267
+sha256 = "ee89fbf782ec2ad50391dd1cf26cbea4f4467154c37f4773026da8fc31c0f58e"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp311"
+abi = "cp311"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/7b/f9/19d842d06a08559534fa1eaab6ca551b1bcf40f06620bddec1babaa2772d/triton-3.7.1-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184664887
+sha256 = "d4a0e1cd4c4a76370ed74a8432a53cea28716827d19e40ffc732233e35ceb3f6"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp311"
+abi = "cp311"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/cd/5e/fce69606f7f240297f163e25539906732b199530d486ce67ae319877e821/triton-3.7.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197701306
+sha256 = "6744957e9fd610a29680ec2346057d0c86948ed3812468670719f391e94b44a5"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp312"
+abi = "cp312"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/94/fa/f856e24deb462d5f18bd4b5a746957862ab9b6ee5834bda60605ec348366/triton-3.7.1-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184692359
+sha256 = "9497f2e696ee368862a181a90b2dcc03ca978cc4f602abd67c7d81022a6988e1"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp312"
+abi = "cp312"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/c4/6f/fb96d15db6f36d6eae4cafb998c2e0353bf59d7c4ea1662d7497f269134a/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197719725
+sha256 = "7e40869937a68206ec70d7f25bb7ec6433cb083f9135e1f36dbd318dc449a728"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/3.7.1/json"
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp313"
+abi = "cp313"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/00/42/c5089d4d9327fcd1e862c599cc2927f39418f84dd11a84cb2ccff9d4787a/triton-3.7.1-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184694629
+sha256 = "cdbfc09d9ec58bc5e68321525653220de7515c199e7a8097a97c85e62b52cd0a"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp313"
+abi = "cp313"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/07/42/2c3ac59253ae8892b6f307875263dd23dc875cdf732d3aea40d6d41fb7cb/triton-3.7.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197729241
+sha256 = "58c0e131da05134a2a4788ccbcc0c1105cf0f54c8e98f19e34cd465396dc15eb"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp314"
+abi = "cp314"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/40/71/e01aa7ad573883ed9456f130226babdec70b005e098c4d6226a6238e761b/triton-3.7.1-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184705764
+sha256 = "fe4ea396a06171f1f1f58cbd39c70b09294398f7dd7c620939bab54ad6f934fa"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp314"
+abi = "cp314"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/a4/09/5683146fda6a2b569deb78ccfd8fbfea8bfe55f726b081c0a6bb18dd6f28/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197729537
+sha256 = "2020153b08280415ec0da6607834e79166442147e78e144df06b508c75b186d2"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp314"
+abi = "cp314t"
+platform = "manylinux_2_27_aarch64.manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/e9/f8/448220c3092019f9fdfab39ec47985968181d67da34b44f6a7f6280a5cbb/triton-3.7.1-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+filename = "triton-3.7.1-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl"
+size = 184814760
+sha256 = "c58e4c61f0c73b5dba3b5d19b4a7093c32f90dc18b2a7f121a7c16ccd31107b7"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "triton"
+version = "3.7.1"
+python = "cp314"
+abi = "cp314t"
+platform = "manylinux_2_27_x86_64.manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/f0/ac/229b7d4589d2e5937310e72c6d46e89599d16a4a12b479ffa1499fee8eb8/triton-3.7.1-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+filename = "triton-3.7.1-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+size = 197824404
+sha256 = "10ba85fa2cca4a2fbdeb36bf1cb082f2c252bda55bf9fccd74f65ec5bc647e68"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/triton/json"
+etag = "\"tCAzvX/0QKTolWllI74pXg\""
+
+[[wheel]]
+package = "vllm"
+version = "0.27.1"
+python = "cp38"
+abi = "abi3"
+platform = "manylinux_2_28_aarch64"
+url = "https://files.pythonhosted.org/packages/ff/be/6d309884d11ef02966c06d633e156d2070b986df6fccef25041c4b9510e2/vllm-0.27.1-cp38-abi3-manylinux_2_28_aarch64.whl"
+filename = "vllm-0.27.1-cp38-abi3-manylinux_2_28_aarch64.whl"
+size = 307180998
+sha256 = "74c1a04548c9016ace8f6c03592edf62517152a0e833f46282556ffbe0796254"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/vllm/json"
+etag = "\"fxB9XZV9iP8PJhAk+bISCQ\""
+
+[[wheel]]
+package = "vllm"
+version = "0.27.1"
+python = "cp38"
+abi = "abi3"
+platform = "manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/8f/73/20ad0cc655a5739d95342075c9afab1a25338d4b584fc71548c0b362404b/vllm-0.27.1-cp38-abi3-manylinux_2_28_x86_64.whl"
+filename = "vllm-0.27.1-cp38-abi3-manylinux_2_28_x86_64.whl"
+size = 312887766
+sha256 = "98e9fc2a1ed8549a733c9d1b242e2002b82367da9e29e37801761438cb3a2670"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/vllm/0.27.1/json"
+
+[[wheel]]
+package = "xformers"
+version = "0.0.35"
+python = "py39"
+abi = "none"
+platform = "manylinux_2_28_x86_64"
+url = "https://files.pythonhosted.org/packages/a4/85/6d71f9b16f2ac647877e66ed4af723b3fbd477806ab8b8a89d39a362b85f/xformers-0.0.35-py39-none-manylinux_2_28_x86_64.whl"
+filename = "xformers-0.0.35-py39-none-manylinux_2_28_x86_64.whl"
+size = 3264751
+sha256 = "ccc73c7db9890224ab05f5fb60e2034f9e6c8672a10be0cf00e95cbbae3eda7c"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/xformers/0.0.35/json"
+
+[[wheel]]
+package = "xformers"
+version = "0.0.35"
+python = "py39"
+abi = "none"
+platform = "win_amd64"
+url = "https://files.pythonhosted.org/packages/49/0b/88c39c128a05d5b553a67cb9c4c3fc32eefb91f836f838befab9e78f8364/xformers-0.0.35-py39-none-win_amd64.whl"
+filename = "xformers-0.0.35-py39-none-win_amd64.whl"
+size = 2638618
+sha256 = "57381ce3cbb79b593e6b62cb20a937885345fad2796de2aa6fbb66c033601179"
+tier = 0
+[wheel.source]
+kind = "pypi-json"
+harvested = "2026-08-15"
+url = "https://pypi.org/pypi/xformers/json"
+etag = "\"5xw/vjdSb55TkMMvHTCT+g\""
+
+[[torch_build]]
+package = "torch"
+version = "2.13.0"
+"cuda_line" = "12.6"
+"cuda_exact" = "12.6.3"
+"index_url" = "https://download.pytorch.org/whl/cu126"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.14", "3.14t", "3.15", "3.15t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.13.0/torch/csrc/Module.cpp#L3083-L3086", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.13.0"
+"cuda_line" = "12.9"
+"cuda_exact" = "12.9.1"
+"index_url" = "https://download.pytorch.org/whl/cu129"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.14", "3.14t", "3.15", "3.15t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.13.0/torch/csrc/Module.cpp#L3083-L3086", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.13.0"
+"cuda_line" = "13.0"
+"cuda_exact" = "13.0.3"
+"index_url" = "https://download.pytorch.org/whl/cu130"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.14", "3.14t", "3.15", "3.15t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.13.0/torch/csrc/Module.cpp#L3083-L3086", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.13.0"
+"cuda_line" = "13.2"
+"cuda_exact" = "13.2.1"
+"index_url" = "https://download.pytorch.org/whl/cu132"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.14", "3.14t", "3.15", "3.15t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.13.0/torch/csrc/Module.cpp#L3083-L3086", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.6.0"
+"cuda_line" = "11.8"
+"cuda_exact" = "11.8.0"
+"index_url" = "https://download.pytorch.org/whl/cu118"
+cxx11abi = false
+pythons = ["3.9", "3.10", "3.11", "3.12"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.6.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.6.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.6.0/.ci/manywheel/build_common.sh#L114-L118", "https://github.com/pytorch/pytorch/releases/tag/v2.6.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.6.0"
+"cuda_line" = "12.4"
+"cuda_exact" = "12.4.1"
+"index_url" = "https://download.pytorch.org/whl/cu124"
+cxx11abi = false
+pythons = ["3.9", "3.10", "3.11", "3.12"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.6.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.6.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.6.0/.ci/manywheel/build_common.sh#L114-L118", "https://github.com/pytorch/pytorch/releases/tag/v2.6.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.6.0"
+"cuda_line" = "12.6"
+"cuda_exact" = "12.6.3"
+"index_url" = "https://download.pytorch.org/whl/cu126"
+cxx11abi = true
+pythons = ["3.9", "3.10", "3.11", "3.12"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.6.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.6.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.6.0/.ci/manywheel/build_common.sh#L114-L118", "https://github.com/pytorch/pytorch/releases/tag/v2.6.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.8.0"
+"cuda_line" = "12.6"
+"cuda_exact" = "12.6.3"
+"index_url" = "https://download.pytorch.org/whl/cu126"
+cxx11abi = true
+pythons = ["3.9", "3.10", "3.11", "3.12", "3.13", "3.13t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.8.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.8.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.8.0/.ci/pytorch/smoke_test/check_binary_symbols.py#L83-L109", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.8.0"
+"cuda_line" = "12.8"
+"cuda_exact" = "12.8.1"
+"index_url" = "https://download.pytorch.org/whl/cu128"
+cxx11abi = true
+pythons = ["3.9", "3.10", "3.11", "3.12", "3.13", "3.13t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.8.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.8.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.8.0/.ci/pytorch/smoke_test/check_binary_symbols.py#L83-L109", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.8.0"
+"cuda_line" = "12.9"
+"cuda_exact" = "12.9.1"
+"index_url" = "https://download.pytorch.org/whl/cu129"
+cxx11abi = true
+pythons = ["3.9", "3.10", "3.11", "3.12", "3.13", "3.13t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.8.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.8.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.8.0/.ci/pytorch/smoke_test/check_binary_symbols.py#L83-L109", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.9.0"
+"cuda_line" = "12.6"
+"cuda_exact" = "12.6.3"
+"index_url" = "https://download.pytorch.org/whl/cu126"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.13t", "3.14", "3.14t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.9.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.9.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.9.0/torch/csrc/Module.cpp#L2604-L2607", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.9.0"
+"cuda_line" = "12.8"
+"cuda_exact" = "12.8.1"
+"index_url" = "https://download.pytorch.org/whl/cu128"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.13t", "3.14", "3.14t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.9.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.9.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.9.0/torch/csrc/Module.cpp#L2604-L2607", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[torch_build]]
+package = "torch"
+version = "2.9.0"
+"cuda_line" = "13.0"
+"cuda_exact" = "13.0.0"
+"index_url" = "https://download.pytorch.org/whl/cu130"
+cxx11abi = true
+pythons = ["3.10", "3.11", "3.12", "3.13", "3.13t", "3.14", "3.14t"]
+support = "build-axis"
+tier = 0
+[torch_build.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.9.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.9.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+references = ["https://github.com/pytorch/pytorch/blob/v2.9.0/torch/csrc/Module.cpp#L2604-L2607", "https://github.com/pytorch/pytorch/releases/tag/v2.7.0"]
+
+[[tested_against]]
+package = "torch"
+version = "2.13.0"
+"cuda_exact" = "12.6.3"
+note = "Exact CUDA version declared for the 12.6 binary-build axis; tier 0 records build metadata, not a runtime verification."
+tier = 0
+[tested_against.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+etag = "\"89f398f1d621a30e52aaa75f2f4f103667d6cb9c28c5c3f63f4a97224bc54538\""
+sha256 = "322eefdbbe41f1d6b83dad0c8eb5788cefbfce66a9ddbe60cf02232f142a0ee6"
+
+[[tested_against]]
+package = "torch"
+version = "2.13.0"
+"cuda_exact" = "12.9.1"
+note = "Exact CUDA version declared for the 12.9 binary-build axis; tier 0 records build metadata, not a runtime verification."
+tier = 0
+[tested_against.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+etag = "\"89f398f1d621a30e52aaa75f2f4f103667d6cb9c28c5c3f63f4a97224bc54538\""
+sha256 = "322eefdbbe41f1d6b83dad0c8eb5788cefbfce66a9ddbe60cf02232f142a0ee6"
+
+[[tested_against]]
+package = "torch"
+version = "2.13.0"
+"cuda_exact" = "13.0.3"
+note = "Exact CUDA version declared for the 13.0 binary-build axis; tier 0 records build metadata, not a runtime verification."
+tier = 0
+[tested_against.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+etag = "\"89f398f1d621a30e52aaa75f2f4f103667d6cb9c28c5c3f63f4a97224bc54538\""
+sha256 = "322eefdbbe41f1d6b83dad0c8eb5788cefbfce66a9ddbe60cf02232f142a0ee6"
+
+[[tested_against]]
+package = "torch"
+version = "2.13.0"
+"cuda_exact" = "13.2.1"
+note = "Exact CUDA version declared for the 13.2 binary-build axis; tier 0 records build metadata, not a runtime verification."
+tier = 0
+[tested_against.source]
+kind = "build-script"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/pytorch/pytorch/v2.13.0/.github/scripts/generate_binary_build_matrix.py"
+repo = "pytorch/pytorch"
+tag = "v2.13.0"
+path = ".github/scripts/generate_binary_build_matrix.py"
+etag = "\"89f398f1d621a30e52aaa75f2f4f103667d6cb9c28c5c3f63f4a97224bc54538\""
+sha256 = "322eefdbbe41f1d6b83dad0c8eb5788cefbfce66a9ddbe60cf02232f142a0ee6"
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "10.0"
+"min_driver" = { linux = "410.48", windows = "411.31" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "10.1"
+"min_driver" = { linux = "418.39", windows = "418.96" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "10.2"
+"min_driver" = { linux = "440.33", windows = "441.22" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "11.x"
+"min_driver" = { linux = "450", windows = "450" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "12.x"
+"min_driver" = { linux = "525", windows = "525" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[constraint]]
+kind = "driver-min"
+compatibility = "minor-compatible"
+"cuda_runtime" = "13.x"
+"min_driver" = { linux = "580", windows = "580" }
+note = "Parsed from NVIDIA's table. Minor compatibility has feature caveats, including PTX JIT requirements; this is a floor, not a guarantee for every application."
+tier = 0
+[constraint.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html"
+etag = "\"82be4783f1561f39cf358c0ae441cb78\""
+
+[[couple]]
+kind = "compatible-release-set"
+packages = ["torch", "torchvision", "torchaudio"]
+versions = { torch = "2.6.0", torchaudio = "2.6.0", torchvision = "0.21.0" }
+note = "Official PyTorch previous-versions installation tuple."
+tier = 0
+[couple.source]
+kind = "official-docs"
+harvested = "2026-08-15"
+url = "https://pytorch.org/get-started/previous-versions/"
+
+[[couple]]
+kind = "compatible-release-set"
+packages = ["torch", "torchvision", "torchaudio"]
+versions = { torch = "2.8.0", torchaudio = "2.8.0", torchvision = "0.23.0" }
+note = "Official PyTorch previous-versions installation tuple."
+tier = 0
+[couple.source]
+kind = "official-docs"
+harvested = "2026-08-15"
+url = "https://pytorch.org/get-started/previous-versions/"
+
+[[couple]]
+kind = "compatible-release-set"
+packages = ["torch", "torchvision", "torchaudio"]
+versions = { torch = "2.9.0", torchaudio = "2.9.0", torchvision = "0.24.0" }
+note = "Official PyTorch previous-versions installation tuple."
+tier = 0
+[couple.source]
+kind = "official-docs"
+harvested = "2026-08-15"
+url = "https://pytorch.org/get-started/previous-versions/"
+
+[[known_broken]]
+id = "flashattn-post1-torch29-filename"
+description = "flash-attn v2.8.3.post1 with torch 2.9: setup.py constructs a 2.8.3.post1 wheel filename, but the two CUDA 13 / torch 2.9 release assets are named 2.8.3, so the automatic request misses the published asset and falls back to a source build."
+match = { "cuda_line" = "13", package = "flash-attn", "source_build" = false, torch = "2.9", version = "2.8.3.post1" }
+workaround = "For CPython 3.12 Linux, install the matching 2.8.3-named release asset by explicit URL; otherwise build from source or choose a published matching version."
+tier = 0
+[known_broken.source]
+kind = "upstream-code"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/Dao-AILab/flash-attention/v2.8.3.post1/setup.py"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3.post1"
+path = "setup.py"
+references = ["https://api.github.com/repos/Dao-AILab/flash-attention/releases/tags/v2.8.3.post1"]
+
+[[architecture]]
+arch = "sm_100"
+"cuda_min" = "12.8"
+note = "Blackwell sm_100 support starts with CUDA 12.8."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_120"
+"cuda_min" = "12.8"
+note = "Blackwell sm_120 support starts with CUDA 12.8."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_50"
+"cuda_max" = "12.9"
+note = "Maxwell family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_52"
+"cuda_max" = "12.9"
+note = "Maxwell family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_53"
+"cuda_max" = "12.9"
+note = "Maxwell family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_60"
+"cuda_max" = "12.9"
+note = "Pascal family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_61"
+"cuda_max" = "12.9"
+note = "Pascal family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_62"
+"cuda_max" = "12.9"
+note = "Pascal family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_70"
+"cuda_max" = "12.9"
+note = "Volta family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_72"
+"cuda_max" = "12.9"
+note = "Volta family is supported through the final CUDA 12.x line (12.9) and removed in CUDA 13."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[architecture]]
+arch = "sm_90"
+"cuda_min" = "11.8"
+note = "Hopper support starts with CUDA 11.8."
+tier = 0
+[architecture.source]
+kind = "nvidia-docs"
+harvested = "2026-08-15"
+url = "https://docs.nvidia.com/datacenter/tesla/drivers/cuda-toolkit-driver-and-architecture-matrix.html"
+
+[[source_build]]
+package = "flash-attn"
+"version_spec" = "<=2.8.3.post1,>=2.8.3"
+requirements = ["CUDA toolkit >=12.0", "torch>=2.2", "packaging", "ninja", "Linux"]
+flags = ["--no-build-isolation"]
+note = "Upstream documents MAX_JOBS for memory-constrained builds; duration is hardware-dependent and is intentionally not estimated here."
+tier = 0
+[source_build.source]
+kind = "build-docs"
+harvested = "2026-08-15"
+url = "https://raw.githubusercontent.com/Dao-AILab/flash-attention/v2.8.3/README.md"
+repo = "Dao-AILab/flash-attention"
+tag = "v2.8.3"
+path = "README.md"
+references = ["https://raw.githubusercontent.com/Dao-AILab/flash-attention/v2.8.3/setup.py"]
