@@ -1,0 +1,2 @@
+11:memory:/kubepods/burstable/pod8e876469-3310-4f52-9c43-7f0f3a29ac14/1b68a7a5
+10:cpu,cpuacct:/kubepods/burstable/pod8e876469-3310-4f52-9c43-7f0f3a29ac14/1b68a7a5
