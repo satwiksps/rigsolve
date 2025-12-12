@@ -1,0 +1,67 @@
+name: Harvest compatibility facts
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: matrix-harvest
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    name: Harvest, validate, and package review artifact
+    runs-on: ubuntu-latest
+    if: github.repository == 'satwiksps/rigsolve'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: .harvest-cache
+          key: harvest-http-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            harvest-http-v1-${{ runner.os }}-
+      - name: Install harvest dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Harvest upstream tier-0 facts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python .github/scripts/harvest_matrix.py \
+            --matrix src/rigsolve/data/matrix.toml \
+            --cache .harvest-cache
+      - name: Validate resulting matrix
+        run: |
+          python -m rigsolve --matrix src/rigsolve/data/matrix.toml matrix stats --json
+          python -m pytest tests/test_resolver.py tests/test_solver_core.py tests/test_cli.py
+      - name: Prepare a review artifact
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- src/rigsolve/data/matrix.toml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No material matrix changes were found." >> "$GITHUB_STEP_SUMMARY"
+          else
+            git diff -- src/rigsolve/data/matrix.toml > matrix-harvest.patch
+            cp src/rigsolve/data/matrix.toml matrix-candidate.toml
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "A validated matrix candidate is attached as a workflow artifact for human review." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload candidate and deterministic diff
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: matrix-harvest-${{ github.run_id }}
+          path: |
+            matrix-candidate.toml
+            matrix-harvest.patch
+          if-no-files-found: error
+          retention-days: 14
