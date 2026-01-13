@@ -1,0 +1,68 @@
+name: Bug report
+description: Report incorrect CLI behavior, a crash, or a regression
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make rigsolve safer. For a bad GPU combination, use the **Known-broken combination** form. For a vulnerability, follow `SECURITY.md` and do not continue here.
+  - type: input
+    id: version
+    attributes:
+      label: rigsolve version
+      description: Output of `rigsolve --version`.
+      placeholder: rigsolve 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: matrix
+    attributes:
+      label: Matrix version and digest
+      description: First line of `rigsolve matrix show` or the JSON metadata.
+      placeholder: Matrix 2026.08.15 | sha256:...
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Exact command, with tokens, private indexes, usernames, and hostnames removed.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: Include the complete error and exit code.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Sanitized environment
+      description: OS, architecture, Python version, installation method, and relevant `rigsolve doctor` output. Review any JSON before pasting it.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Smallest sequence that reproduces the problem, including a custom matrix if one is required.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed credentials, private URLs, usernames, hostnames, and other data I do not want to publish.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

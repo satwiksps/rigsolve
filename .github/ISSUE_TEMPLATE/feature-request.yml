@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose a focused capability or evidence source
+title: "proposal: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What concrete GPU-environment decision cannot rigsolve make today?
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current workaround
+      description: How do users solve or diagnose this now, and what goes wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Show an example command and output if this changes the CLI.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and scope
+      description: Link official schemas, build metadata, or public artifacts, and state affected platforms and packages.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Project boundary
+      options:
+        - label: This proposal preserves review-before-execution unless it explicitly explains why governance should change that policy.
+          required: true
