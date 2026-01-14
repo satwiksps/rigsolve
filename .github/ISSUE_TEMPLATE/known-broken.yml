@@ -1,0 +1,71 @@
+name: Known-broken combination
+description: Contribute a reproducible negative compatibility fact
+title: "known-broken: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An artifact existing is not proof that it works. A narrow, reproducible failure with a workaround is valuable evidence. Please do not assign a verification tier yourself.
+  - type: textarea
+    id: pins
+    attributes:
+      label: Exact package and build versions
+      description: Include torch, extension, Python, CUDA build line, driver, platform, ABI mode, and wheel URL or filename when known.
+      placeholder: |
+        torch==...
+        flash-attn==...
+        Python ... / CUDA ... / driver ... / linux_x86_64
+    validations:
+      required: true
+  - type: textarea
+    id: detect
+    attributes:
+      label: Sanitized machine profile
+      description: Paste reviewed `rigsolve detect --json` output or list the relevant fields. Remove anything you do not want public.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: symptom
+    attributes:
+      label: Complete failure symptom
+      description: Include the command, stderr, exit status, and whether failure happens at install, import, or kernel execution.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest clean-environment procedure that reproduces it.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Tested workaround
+      description: A known-broken matrix fact cannot be accepted without useful avoidance or repair guidance.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public evidence
+      description: Link upstream artifacts, documentation, issues, or build scripts that support the exact scope of the report.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Optional reviewed verification payload
+      description: Drag a reviewed `rigsolve-verification.json` here if the workaround succeeds. The file is not uploaded by rigsolve itself.
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Confirmation
+      options:
+        - label: I reproduced this combination and did not infer the failure only from an artifact name.
+          required: true
+        - label: I reviewed this report and attachments for secrets and private machine metadata.
+          required: true
+        - label: I understand maintainers may narrow the match fields to avoid excluding valid plans.
+          required: true

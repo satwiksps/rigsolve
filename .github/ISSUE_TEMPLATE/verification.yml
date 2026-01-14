@@ -1,0 +1,54 @@
+name: Verification evidence
+description: Submit reviewed install, import, or GPU-run evidence
+title: "verification: "
+body:
+  - type: dropdown
+    id: depth
+    attributes:
+      label: Evidence reached
+      options:
+        - Installation only
+        - Import and build configuration
+        - Real kernel run
+    validations:
+      required: true
+  - type: textarea
+    id: packages
+    attributes:
+      label: Exact packages and artifacts
+      description: Versions, indexes, wheel URLs or hashes, and container image digest if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: procedure
+    attributes:
+      label: Reproduction procedure
+      description: Include environment creation, install commands, and the exact verification command.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Sanitized output
+      description: Paste the output and drag in a reviewed `rigsolve-verification.json` if available.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Environment scope
+      description: GPU and compute capability, driver, OS/container, architecture, glibc, Python ABI, torch CUDA build, and C++ ABI when known.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I did not increase or edit the tier emitted by rigsolve.
+          required: true
+        - label: I reviewed all output and attachments for private data.
+          required: true
+        - label: I understand a GPU run applies only to the environment and architecture recorded here.
+          required: true
