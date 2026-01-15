@@ -1,0 +1,19 @@
+# Template only. Replace every example value and source with reproduced evidence.
+[meta]
+schema_version = 1
+matrix_version = "contribution-YYYY-MM-DD"
+generated = "2026-08-15"
+description = "One narrowly scoped known-broken contribution."
+
+[[known_broken]]
+id = "replace-with-stable-lowercase-id"
+description = "Import fails with the complete, distinguishing error symptom."
+match = { package = "flash-attn", version = "2.8.3", torch = "2.9" }
+workaround = "Replace this with a tested workaround or a precise avoidance rule."
+tier = 0
+
+[known_broken.source]
+kind = "user-report"
+url = "https://github.com/OWNER/REPOSITORY/issues/123"
+confirmed_by = 1
+harvested = "2026-08-15"
