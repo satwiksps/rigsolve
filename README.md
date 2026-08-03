@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml/badge.svg)](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776AB.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/satwiksps/rigsolve/blob/main/LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/satwiksps/rigsolve/blob/main/LICENSE)
 
 Finds torch, CUDA, and native-extension combinations supported by sourced evidence — and explains every constraint.
 
@@ -173,16 +173,16 @@ For a matrix PR, start with the [known-broken template](https://github.com/satwi
 
 ## Current scope
 
-`rigsolve` is unreleased alpha software. This repository includes the CLI, offline detector, constraint solver, matrix validation, pip/uv/TOML/Docker/JSON/Colab emitters, diagnostics, isolated verification, and source harvesters. The bundled evidence is deliberately conservative: it is Linux x86_64 and NVIDIA CUDA focused, contains no tier-3 claims, and does not provide Conda output.
+`rigsolve` 0.1.0 is alpha software. This repository includes the CLI, offline detector, constraint solver, matrix validation, pip/uv/TOML/Docker/JSON/Colab emitters, diagnostics, isolated verification, and source harvesters. The bundled evidence is deliberately conservative: it is Linux x86_64 and NVIDIA CUDA focused, contains no tier-3 claims, and does not provide Conda output.
 
 The daily harvester is read-only with respect to the repository. When upstream facts change, it uploads a validated candidate matrix and deterministic diff as a short-lived workflow artifact; it never creates a branch, pull request, commit, or merge. See the [harvesting guide](https://github.com/satwiksps/rigsolve/blob/main/docs/harvesting.md).
 
 ## Contributing and governance
 
-Bug reports, source citations, detection fixtures, matrix facts, and verification results are welcome. Start with [CONTRIBUTING.md](https://github.com/satwiksps/rigsolve/blob/main/CONTRIBUTING.md), read the [Code of Conduct](https://github.com/satwiksps/rigsolve/blob/main/CODE_OF_CONDUCT.md), and see [GOVERNANCE.md](https://github.com/satwiksps/rigsolve/blob/main/GOVERNANCE.md) for how decisions and releases work.
+Bug reports, source citations, detection fixtures, matrix facts, and verification results are welcome. Start with [CONTRIBUTING.md](https://github.com/satwiksps/rigsolve/blob/main/CONTRIBUTING.md) and read the [Code of Conduct](https://github.com/satwiksps/rigsolve/blob/main/CODE_OF_CONDUCT.md).
 
 Security issues should follow [SECURITY.md](https://github.com/satwiksps/rigsolve/blob/main/SECURITY.md), not a public compatibility report.
 
 ## License
 
-[MIT](https://github.com/satwiksps/rigsolve/blob/main/LICENSE)
+[Apache License 2.0](https://github.com/satwiksps/rigsolve/blob/main/LICENSE)

@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Finds torch, CUDA, and native-extension combinations supported by sourced evidence — and explains every constraint."
 readme = "README.md"
 requires-python = ">=3.10"
-license = "MIT"
+license = "Apache-2.0"
 license-files = ["LICENSE"]
 authors = [{ name = "rigsolve contributors" }]
 keywords = [
@@ -25,6 +25,7 @@ classifiers = [
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
   "Operating System :: POSIX :: Linux",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
@@ -72,7 +73,6 @@ include = [
   "/CITATION.cff",
   "/CODE_OF_CONDUCT.md",
   "/CONTRIBUTING.md",
-  "/GOVERNANCE.md",
   "/SECURITY.md",
   "/docs",
   "/examples",

@@ -1,0 +1,7 @@
+.next/
+.vercel/
+node_modules/
+out/
+public/og.png
+package-lock.json
+tsconfig.tsbuildinfo

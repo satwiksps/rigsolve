@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #080a0d;
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(115, 183, 255, 0.08),
+      transparent 32rem
+    ),
+    #080a0d;
+  color: #f2f4f7;
+  min-width: 320px;
+}
+
+::selection {
+  background: rgba(115, 183, 255, 0.25);
+  color: #ffffff;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #73b7ff;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  background: #f2f4f7;
+  color: #080a0d;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  top: 0.75rem;
+  transform: translateY(-180%);
+  transition: transform 150ms ease;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  header {
+    backdrop-filter: none !important;
+    background: #080a0d !important;
+  }
+}
