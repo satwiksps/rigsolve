@@ -68,7 +68,7 @@ def test_profile_and_smoke_reports_cover_success_failure_and_unknown() -> None:
         ),
     )
     output = format_smoke_results(results)
-    assert "tier 3" in output
+    assert "GPU-tested" in output
     assert "undefined symbol" in output
     assert "No supported" in format_smoke_results(())
 

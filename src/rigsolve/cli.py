@@ -18,6 +18,7 @@ from rigsolve.detect import MachineProfile, detect_machine_profile, profile_from
 from rigsolve.diagnose import check_environment, format_check_report
 from rigsolve.doctor import format_doctor, run_doctor
 from rigsolve.errors import ExitCode, RigsolveError, UserInputError
+from rigsolve.evidence import evidence_label
 from rigsolve.matrix import (
     DEFAULT_UPDATE_URL,
     MatrixStore,
@@ -79,6 +80,11 @@ def _parser() -> argparse.ArgumentParser:
         action="store_true",
         help="execute the resolved plan; without this flag rigsolve never installs",
     )
+    solve.add_argument(
+        "--skip-verify",
+        action="store_true",
+        help="with --execute, skip automatic post-install import and GPU probes",
+    )
 
     check = commands.add_parser("check", help="diagnose an installed environment")
     check.add_argument("--fix", action="store_true", help="also print a minimal-change repair plan")
@@ -94,7 +100,7 @@ def _parser() -> argparse.ArgumentParser:
     verify = commands.add_parser("verify", help="run isolated imports and available kernel probes")
     verify.add_argument("--package", action="append", dest="packages")
     verify.add_argument(
-        "--no-gpu", action="store_true", help="stop at import verification (tier 2)"
+        "--no-gpu", action="store_true", help="run import checks without GPU kernels"
     )
     verify.add_argument("--timeout", type=float, default=60.0)
     verify.add_argument("--contribute", action="store_true")
@@ -144,6 +150,8 @@ def _detect_command(args: argparse.Namespace) -> int:
 
 
 def _solve_command(args: argparse.Namespace, store: MatrixStore) -> int:
+    if args.skip_verify and not args.execute:
+        raise UserInputError("--skip-verify is valid only with --execute")
     if args.execute and args.output != "pip":
         raise UserInputError("--execute is supported only with --output pip")
     if args.execute and args.target:
@@ -177,6 +185,13 @@ def _solve_command(args: argparse.Namespace, store: MatrixStore) -> int:
                 f"Installing {step.package} {step.version}...", file=sys.stderr
             ),
         )
+        if not args.skip_verify:
+            packages = tuple(dict.fromkeys(step.package for step in outcome.plan.ordered_steps()))
+            results = verify_packages(packages, run_gpu=True)
+            print("\nPost-install verification:", file=sys.stderr)
+            print(format_smoke_results(results), end="", file=sys.stderr)
+            if not all(result.ok for result in results):
+                return int(ExitCode.ENVIRONMENT_BROKEN)
     return int(ExitCode.OK)
 
 
@@ -211,7 +226,7 @@ def _why_command(args: argparse.Namespace, store: MatrixStore) -> int:
         packages = ", ".join(
             f"{step.package}=={step.version}" for step in outcome.plan.ordered_steps()
         )
-        print(f"A solution exists (weakest evidence tier {outcome.plan.weakest_tier}): {packages}")
+        print(f"A solution exists (evidence: {outcome.plan.evidence_label}): {packages}")
         return int(ExitCode.OK)
     assert outcome.failure is not None
     print(explain_failure(outcome.failure, profile), end="")
@@ -263,7 +278,12 @@ def _matrix_command(args: argparse.Namespace, store: MatrixStore) -> int:
                 "Families: "
                 + ", ".join(f"{key}={value}" for key, value in stats["families"].items())
             )
-            print("Tiers: " + ", ".join(f"{key}={value}" for key, value in stats["tiers"].items()))
+            print(
+                "Evidence: "
+                + ", ".join(
+                    f"{evidence_label(int(key))}={value}" for key, value in stats["tiers"].items()
+                )
+            )
             print(
                 "Packages: "
                 + ", ".join(f"{key}={value}" for key, value in stats["packages"].items())

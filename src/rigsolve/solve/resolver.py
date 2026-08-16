@@ -1196,7 +1196,7 @@ def _make_plan(
     constraint_tiers = _plan_constraint_tiers(assignment, profile, store)
     if 0 in constraint_tiers or any(candidate.tier == 0 for candidate in assignment.values()):
         warnings.append(
-            "tier 0 is derived from upstream artifacts or documentation only; it does not prove install, import, or kernel execution"
+            "selected versions are metadata-backed; use --execute to install and verify them on this machine"
         )
     torch_candidate = assignment.get("torch")
     for package in sorted(assignment):

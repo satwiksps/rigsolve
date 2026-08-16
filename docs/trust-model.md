@@ -8,18 +8,18 @@ rigsolve separates three questions that are commonly collapsed:
 
 The answer to the first question must never be presented as an answer to the third.
 
-## Verification tiers
+## Evidence levels
 
-| Tier | Name | Minimum evidence |
+| Stored level | User-facing label | Minimum evidence |
 |---:|---|---|
-| 0 | Derived | Parsed upstream artifact metadata or an upstream documented constraint |
-| 1 | Installs | Successful installation in a recorded isolated environment |
-| 2 | Imports | Successful import with the available build metadata recorded in that environment |
-| 3 | Runs | Successful minimal real kernel on a recorded GPU architecture |
+| 0 | Metadata-backed | Parsed upstream artifact metadata or an upstream documented constraint |
+| 1 | Install-tested | Successful installation in a recorded isolated environment |
+| 2 | Import-tested | Successful import with the available build metadata recorded in that environment |
+| 3 | GPU-tested | Successful minimal real kernel on a recorded GPU architecture |
 
-Each plan reports its weakest participating tier. If ten facts are tier 3 and one is tier 0, the plan is tier 0.
+TOML and JSON retain numeric levels for compatibility. Human-readable output uses the labels above. A plan reports the weakest evidence used by its selected artifacts and constraints.
 
-Tier is evidence depth, not a probability and not a quality score. Tier 3 on one environment does not establish universal compatibility. OS, architecture, Python ABI, glibc, driver, CUDA runtime, torch version, extension build, and container image can all be load-bearing.
+Evidence depth is not a probability or a product-readiness score. A GPU-tested result on one environment does not establish universal compatibility. OS, architecture, Python ABI, glibc, driver, CUDA runtime, torch version, extension build, and container image can all be load-bearing.
 
 ## Provenance
 
@@ -51,13 +51,15 @@ Anecdotes are useful issue reports but should not become broad negative facts wi
 
 ## Local verification
 
-`rigsolve verify` uses child processes so a native crash is isolated. A successful import can establish tier 2. Only probes with real GPU code can establish tier 3, and only when that code returns successfully. Today, real kernel probes exist for torch and flash-attn; other built-in probes are import-only.
+`rigsolve verify` uses child processes so a native crash is isolated. A successful import is reported as import-tested. Only probes with real GPU code can be reported as GPU-tested, and only when that code returns successfully. Today, real kernel probes exist for torch and flash-attn; other built-in probes are import-only.
+
+`rigsolve solve --execute` runs these checks automatically after installation. This answers the useful local question—whether the selected stack imports or runs on this machine—without broadening that result to untested machines. `--skip-verify` is available for deliberate install-only workflows.
 
 `--contribute` serializes the result and machine profile locally. It does not attest the host, sign the payload, or upload it. Maintainer review is required before converting that payload into matrix data.
 
 ## Current seed
 
-As of matrix `2026.08.15`, the bundle has 114 facts and every fact is tier 0. It includes one narrowly scoped `known_broken` fact for the flash-attn `2.8.3.post1` filename edge. This is an auditable starting point, not production-grade coverage.
+Matrix `2026.08.15` contains 114 sourced facts and one narrowly scoped `known_broken` fact for the flash-attn `2.8.3.post1` filename edge. Its upstream package and build facts are metadata-backed. Local execution results come from `solve --execute` or `verify`; they are not silently generalized into global claims.
 
 Use the installed copy as the source of truth:
 

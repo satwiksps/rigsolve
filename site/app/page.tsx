@@ -31,39 +31,35 @@ const steps = [
     number: "03",
     command: "rigsolve why",
     title: "Review the answer",
-    body: "Return an ordered plan or a reduced conflict. Plans identify their matrix version and weakest evidence tier; conflict reports retain the constraints that ruled the request out.",
+    body: "Return an ordered plan or a reduced conflict. Plans identify their matrix version and evidence depth; conflict reports retain the constraints that ruled the request out.",
   },
 ] as const;
 
-const tiers = [
+const evidenceLevels = [
   {
     tier: "0",
-    name: "Derived",
-    claim: "An artifact or documented build axis was observed.",
-    limit: "Does not prove installation.",
-    current: true,
+    name: "Metadata-backed",
+    claim: "The artifact or build axis is published upstream.",
+    limit: "Does not claim local success before execution.",
   },
   {
     tier: "1",
-    name: "Installs",
-    claim: "The exact combination installed in an isolated environment.",
+    name: "Install-tested",
+    claim: "The exact artifact installed in a recorded environment.",
     limit: "Does not prove import.",
-    current: false,
   },
   {
     tier: "2",
-    name: "Imports",
+    name: "Import-tested",
     claim:
       "The package imported and its available build metadata was recorded.",
     limit: "Does not prove a GPU kernel ran.",
-    current: false,
   },
   {
     tier: "3",
-    name: "Runs",
+    name: "GPU-tested",
     claim: "A real kernel ran on the recorded GPU architecture.",
     limit: "Does not imply portability to other GPUs.",
-    current: false,
   },
 ] as const;
 
@@ -74,7 +70,7 @@ const operatingPrinciples = [
   },
   {
     title: "Plans before side effects",
-    body: "The CLI prints reviewable pip, uv, Dockerfile, TOML, JSON, or Colab output. Installation happens only with --execute.",
+    body: "The CLI prints reviewable pip, uv, Dockerfile, TOML, JSON, or Colab output. --execute installs and then runs local verification.",
   },
   {
     title: "Provenance is required",
@@ -92,7 +88,7 @@ export default function Home() {
     description: siteDescription,
     url: getSiteUrl().toString(),
     codeRepository: repositoryUrl,
-    softwareVersion: "0.1.0",
+    softwareVersion: "0.1.1",
     license: `${repositoryUrl}/blob/main/LICENSE`,
     offers: {
       "@type": "Offer",
@@ -178,7 +174,8 @@ export default function Home() {
             <p className="mt-7 max-w-xl text-lg leading-8 text-zinc-400">
               rigsolve profiles the machine without importing torch, evaluates
               the compatibility constraints ordinary package metadata misses,
-              and prints a sourced install or repair plan.
+              and prints a sourced install or repair plan. Executed plans are
+              checked on the local machine after installation.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -204,7 +201,7 @@ export default function Home() {
             <CopyCommand value={installCommand} />
 
             <p className="mt-5 font-mono text-[11px] leading-5 text-zinc-400">
-              v0.1.0 alpha / Python 3.10+ / Linux x86_64 + NVIDIA CUDA /
+              v0.1.1 alpha / Python 3.10+ / Linux x86_64 + NVIDIA CUDA /
               Apache-2.0
             </p>
           </div>
@@ -292,10 +289,11 @@ export default function Home() {
                   Current bundled matrix
                 </p>
                 <p className="mt-2 text-sm leading-6 text-zinc-300">
-                  2026.08.15 / 114 facts / all tier 0 / 1 known-broken edge
+                  2026.08.15 / 114 sourced facts / 1 blocked upstream edge
                 </p>
                 <p className="mt-2 text-xs leading-5 text-zinc-400">
-                  An auditable seed, not a claim of production-grade coverage.
+                  Plans start from published build metadata; executed plans are
+                  verified on the local machine.
                 </p>
               </div>
 
@@ -312,36 +310,29 @@ export default function Home() {
 
             <div className="overflow-hidden rounded-lg border border-white/10">
               <div className="hidden grid-cols-[5rem_7rem_1fr_1fr] border-b border-white/10 bg-white/[0.025] px-5 py-3 font-mono text-[10px] tracking-wider text-zinc-400 uppercase sm:grid">
-                <span>Tier</span>
+                <span>Level</span>
                 <span>Name</span>
                 <span>Establishes</span>
                 <span>Limit</span>
               </div>
-              {tiers.map((tier) => (
+              {evidenceLevels.map((level) => (
                 <article
-                  className={`grid gap-3 border-b border-white/10 px-5 py-5 last:border-b-0 sm:grid-cols-[5rem_7rem_1fr_1fr] sm:items-start ${
-                    tier.current ? "bg-sky-400/[0.035]" : ""
-                  }`}
-                  key={tier.tier}
+                  className="grid gap-3 border-b border-white/10 px-5 py-5 last:border-b-0 sm:grid-cols-[5rem_7rem_1fr_1fr] sm:items-start"
+                  key={level.tier}
                 >
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs text-sky-300">
-                      T{tier.tier}
+                      L{level.tier}
                     </span>
-                    {tier.current ? (
-                      <span className="font-mono text-[9px] text-zinc-400 uppercase sm:hidden">
-                        current
-                      </span>
-                    ) : null}
                   </div>
                   <h3 className="text-sm font-medium text-zinc-200">
-                    {tier.name}
+                    {level.name}
                   </h3>
                   <p className="text-sm leading-6 text-zinc-400">
-                    {tier.claim}
+                    {level.claim}
                   </p>
                   <p className="text-sm leading-6 text-zinc-400">
-                    {tier.limit}
+                    {level.limit}
                   </p>
                 </article>
               ))}

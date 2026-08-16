@@ -6,6 +6,18 @@ This file records user-visible changes to rigsolve. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-16
+
+### Added
+
+- `solve --execute` now runs isolated import checks and available GPU kernel probes after installation.
+- `--skip-verify` supports deliberate install-only workflows.
+
+### Changed
+
+- Human-readable output uses `metadata-backed`, `install-tested`, `import-tested`, and `GPU-tested` labels instead of exposing internal numeric evidence levels.
+- Documentation now separates matrix evidence depth from local installation readiness.
+
 ## [0.1.0] - 2026-08-16
 
 ### Added
@@ -25,5 +37,6 @@ This file records user-visible changes to rigsolve. The format follows
 - Installation is opt-in: plan rendering never installs packages, and execution requires an explicit `solve --execute` invocation against the detected local environment.
 - Executable artifact and index URLs require HTTPS, and matrix updates are validated before atomic replacement.
 
-[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/satwiksps/rigsolve/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/satwiksps/rigsolve/releases/tag/v0.1.0

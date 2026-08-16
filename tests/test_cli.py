@@ -6,6 +6,11 @@ import pytest
 from tests.test_resolver import MATRIX
 
 from rigsolve.cli import main
+from rigsolve.detect import MachineProfile
+from rigsolve.plan import InstallPlan, InstallStep
+from rigsolve.solve.resolver import ResolutionOutcome
+from rigsolve.verify.smoke import SmokeResult
+from rigsolve.verify.tiers import VerificationTier
 
 
 def matrix_file(tmp_path: Path) -> Path:
@@ -148,3 +153,71 @@ def test_execute_rejects_nonlocal_or_nonpip_plans(extra, monkeypatch, tmp_path, 
     assert code == 64
     assert not executed
     assert "--execute" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(("verification_ok", "expected_code"), ((True, 0), (False, 2)))
+def test_execute_runs_post_install_verification_by_default(
+    verification_ok, expected_code, monkeypatch, tmp_path, capsys
+) -> None:
+    plan = InstallPlan(
+        requested=("torch",),
+        steps=(InstallStep(package="torch", version="2.9.0", tier=0),),
+        matrix_version="test",
+        matrix_digest="a" * 64,
+    )
+    executed: list[InstallPlan] = []
+    verified: list[tuple[str, ...]] = []
+
+    monkeypatch.setattr("rigsolve.cli._profile", lambda *args: MachineProfile())
+    monkeypatch.setattr(
+        "rigsolve.cli.resolve", lambda *args, **kwargs: ResolutionOutcome(plan=plan)
+    )
+    monkeypatch.setattr("rigsolve.cli.execute_plan", lambda value, **kwargs: executed.append(value))
+
+    def verify(packages, **kwargs):
+        verified.append(tuple(packages))
+        return (
+            SmokeResult(
+                "torch",
+                verification_ok,
+                VerificationTier.RUNS if verification_ok else None,
+                version="2.9.0" if verification_ok else None,
+                error=None if verification_ok else "probe failed",
+            ),
+        )
+
+    monkeypatch.setattr("rigsolve.cli.verify_packages", verify)
+
+    code = main(
+        (
+            "--matrix",
+            str(matrix_file(tmp_path)),
+            "solve",
+            "--want",
+            "torch",
+            "--execute",
+        )
+    )
+
+    assert code == expected_code
+    assert executed == [plan]
+    assert verified == [("torch",)]
+    error = capsys.readouterr().err
+    assert "Post-install verification" in error
+    assert ("GPU-tested" if verification_ok else "[FAIL]") in error
+
+
+def test_skip_verify_requires_execute(tmp_path, capsys) -> None:
+    code = main(
+        (
+            "--matrix",
+            str(matrix_file(tmp_path)),
+            "solve",
+            "--want",
+            "torch",
+            "--skip-verify",
+        )
+    )
+
+    assert code == 64
+    assert "valid only with --execute" in capsys.readouterr().err

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from rigsolve.detect import MachineProfile
+from rigsolve.evidence import evidence_label
 from rigsolve.verify.smoke import SmokeResult
 
 
@@ -65,7 +66,7 @@ def format_smoke_results(results: tuple[SmokeResult, ...]) -> str:
                 lines.append(f"[ok] {result.package} {result.version or ''} | unclassified")
                 continue
             lines.append(
-                f"[ok] {result.package} {result.version or ''} | tier {int(tier)} ({tier.label})"
+                f"[ok] {result.package} {result.version or ''} | {evidence_label(int(tier))}"
             )
         else:
             lines.append(f"[FAIL] {result.package} | {result.error or 'probe failed'}")

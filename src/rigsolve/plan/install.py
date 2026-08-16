@@ -12,6 +12,8 @@ from urllib.parse import urlparse, urlunparse
 from packaging.requirements import InvalidRequirement, Requirement
 from packaging.version import InvalidVersion, Version
 
+from rigsolve.evidence import evidence_label as format_evidence_label
+
 
 @dataclass(frozen=True, slots=True)
 class InstallStep:
@@ -151,3 +153,9 @@ class InstallPlan:
                 complete.add(name)
                 remaining.remove(name)
         return tuple(emitted)
+
+    @property
+    def evidence_label(self) -> str:
+        """Plain-language label for the weakest evidence used by this plan."""
+
+        return format_evidence_label(self.weakest_tier)

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rigsolve"
-version = "0.1.0"
+version = "0.1.1"
 description = "Finds torch, CUDA, and native-extension combinations supported by sourced evidence — and explains every constraint."
 readme = "README.md"
 requires-python = ">=3.10"

@@ -346,7 +346,7 @@ harvested = "2026-08-15"
     assert outcome.plan is not None
     assert outcome.plan.steps[0].tier == 3
     assert outcome.plan.weakest_tier == 0
-    assert any("tier 0" in warning for warning in outcome.plan.warnings)
+    assert any("metadata-backed" in warning for warning in outcome.plan.warnings)
 
 
 def test_verified_preference_scores_the_effective_plan_tier_set() -> None:

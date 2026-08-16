@@ -29,7 +29,7 @@ def emit_dockerfile(plan: InstallPlan) -> str:
     image_kind = "devel" if any(step.source_build for step in plan.steps) else "runtime"
     lines = [
         "# syntax=docker/dockerfile:1",
-        f"# Generated from rigsolve matrix {plan.matrix_version}; weakest evidence tier {plan.weakest_tier}.",
+        f"# Generated from rigsolve matrix {plan.matrix_version}; evidence: {plan.evidence_label}.",
         "FROM ghcr.io/astral-sh/uv:0.12.5@sha256:"
         "e85be844203885286c60ffad8a858d48afb6c5a5c237ca0e67f12e74b8f174b1 AS uv",
         (

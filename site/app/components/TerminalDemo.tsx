@@ -44,7 +44,7 @@ const demos: ReadonlyArray<Demo> = [
         tone: "command",
       },
       {
-        text: "matrix 2026.08.15 | weakest evidence: tier 0",
+        text: "matrix 2026.08.15 | evidence: metadata-backed",
         tone: "muted",
       },
       { text: "torch==2.9.0       index: cu126", tone: "value" },

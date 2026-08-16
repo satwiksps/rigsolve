@@ -69,7 +69,7 @@ def source_plan() -> InstallPlan:
 def test_pip_is_dependency_ordered_and_warns_about_evidence() -> None:
     output = render_plan(sample_plan(), "pip")
     assert output.index("torch==") < output.index("flash.whl")
-    assert "weakest evidence: tier 0" in output
+    assert "evidence: metadata-backed" in output
     assert "--index-url https://download.pytorch.org/whl/cu124" in output
     assert "#sha256=" + "b" * 64 in output
 
@@ -78,6 +78,7 @@ def test_json_is_valid_and_ordered() -> None:
     payload = json.loads(render_plan(sample_plan(), "json"))
     assert [step["package"] for step in payload["steps"]] == ["torch", "flash-attn"]
     assert payload["weakest_tier"] == 0
+    assert payload["evidence_label"] == "metadata-backed"
 
 
 def test_toml_roundtrip(tmp_path) -> None:

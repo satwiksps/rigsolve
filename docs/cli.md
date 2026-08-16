@@ -33,6 +33,7 @@ rigsolve solve --want SPEC [SPEC ...]
   [--output pip|uv|toml|docker|json|colab]
   [--write-lockfile PATH]
   [--execute]
+  [--skip-verify]
 ```
 
 `SPEC` accepts a package name or a PEP 440-style version request such as `torch==2.8.0` or `flash-attn>=2.8`.
@@ -49,7 +50,7 @@ Preference policies:
 
 | Policy | Objective |
 |---|---|
-| `verified` | Maximize the weakest evidence tier, then aggregate evidence and version preference |
+| `verified` | Prefer the deepest available evidence, then version preference |
 | `newest` | Prefer newer compatible versions after core validity |
 | `stable` | Prefer non-prerelease and non-development versions, then apply the normal evidence scoring |
 | `minimal-change` | Penalize changes to discoverable installed versions |
@@ -58,7 +59,7 @@ Preference policies:
 
 The default output is `pip`. `--write-lockfile` writes the same resolved plan as deterministic TOML in addition to normal output. Dockerfile and Colab output require a Linux target. A source-build plan that cannot be represented faithfully as a uv project snippet is rejected with a recommendation to use pip, TOML, JSON, or Docker output.
 
-`--execute` is the only solve option that installs; without it, every format is printed for review. Execution is intentionally limited to `--output pip` for the detected machine. It rejects hypothetical `--target` values and `--python` overrides so a plan cannot be executed against a machine profile different from the running interpreter and host.
+`--execute` is the only solve option that installs; without it, every format is printed for review. Execution is intentionally limited to `--output pip` for the detected machine. It rejects hypothetical `--target` values and `--python` overrides so a plan cannot be executed against a different host. After installation, rigsolve runs isolated import checks and available GPU kernels for the selected packages. A failed probe returns exit code 2. `--skip-verify` disables only this post-install step and is valid only with `--execute`.
 
 ## `check`
 
@@ -66,7 +67,7 @@ The default output is `pip`. `--write-lockfile` writes the same resolved plan as
 rigsolve check [--fix] [--lockfile PATH] [--output pip|uv|json]
 ```
 
-Evaluates discoverable installed metadata against every applicable matrix fact. A clean report means “no violation was found among applicable known facts,” not “this environment has been tier-3 verified.”
+Evaluates discoverable installed metadata against every applicable matrix fact. A clean report means “no violation was found among applicable known facts,” not “this environment has been GPU-tested.”
 
 `--lockfile` also checks package versions, CUDA and torch build markers, C++ ABI, matrix identity, and the target dimensions recorded by a rigsolve TOML plan. Unknown local metadata is reported as a warning instead of being treated as proof of compatibility. `--fix` asks for a minimal-change repair plan and prints it; it never applies the plan. `--output` controls that repair-plan format and has an effect only with `--fix`.
 
@@ -79,7 +80,7 @@ rigsolve why SPEC [SPEC ...]
   [--allow-source-build]
 ```
 
-Runs the same resolver as `solve`. A satisfiable request prints the chosen packages and weakest evidence tier. An unsatisfiable request prints the reduced conflict, citations carried by its constraints, and available alternatives. Suggestions are bounded by the facts currently in the matrix and should be reviewed like an install plan.
+Runs the same resolver as `solve`. A satisfiable request prints the chosen packages and a plain-language evidence label. An unsatisfiable request prints the reduced conflict, citations carried by its constraints, and available alternatives. Suggestions are bounded by the facts currently in the matrix and should be reviewed like an install plan.
 
 ## `verify`
 
@@ -94,7 +95,7 @@ rigsolve verify
 
 Each package import runs in a child interpreter. Without `--package`, rigsolve probes the intersection of installed distributions and built-in probes. Repeat `--package` to choose an explicit set.
 
-`--no-gpu` stops at import verification. Otherwise, a package reaches tier 3 only if its probe contains and successfully runs a real GPU kernel. The current kernel probes are torch and flash-attn; the other built-ins are import-only.
+`--no-gpu` stops at import verification. Otherwise, a package is reported as GPU-tested only if its probe contains and successfully runs a real GPU kernel. The current kernel probes are torch and flash-attn; the other built-ins are import-only.
 
 `--contribute` writes a JSON payload, by default `rigsolve-verification.json`. Nothing is uploaded. Review the file before sharing it.
 
@@ -109,7 +110,7 @@ rigsolve matrix add FILE --destination PATH
 
 - `update` conditionally fetches with ETag/Last-Modified metadata, validates the entire response, and atomically updates the user cache. By default the selected result merges over the current matrix. `--no-merge` selects the remote matrix alone.
 - `show` prints metadata, digest, facts, tiers, and citations. `--package` filters relevant package-bearing facts.
-- `stats` reports fact-family, package, tier, source-kind, and harvest-date counts.
+- `stats` reports fact-family, package, evidence-level, source-kind, and harvest-date counts.
 - `add` loads `FILE` as an independently valid matrix, merges it with the selected current matrix, validates the result, and atomically writes `--destination`.
 
 ## `doctor`
