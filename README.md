@@ -1,6 +1,7 @@
 # rigsolve
 
 [![CI](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml/badge.svg)](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/rigsolve.svg)](https://pypi.org/project/rigsolve/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776AB.svg)](https://www.python.org/downloads/)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/satwiksps/rigsolve/blob/main/LICENSE)
 
@@ -43,23 +44,19 @@ The [architecture guide](https://github.com/satwiksps/rigsolve/blob/main/docs/ar
 
 ## Install
 
-`rigsolve` requires Python 3.10 or newer. The supported target data is currently focused on Linux x86_64 and NVIDIA CUDA stacks.
+`rigsolve` requires Python 3.10 or newer. The supported target data is currently focused on Linux x86_64 and NVIDIA CUDA stacks. Install the current release from PyPI:
 
-No PyPI distribution or GitHub release has been published yet. Until the first tagged release, install the current source from `main`:
+```bash
+python -m pip install rigsolve
+```
+
+For development, clone the repository and install the contributor tools:
 
 ```bash
 git clone https://github.com/satwiksps/rigsolve.git
 cd rigsolve
-python -m pip install -e .
-```
-
-Contributors can install the quality and test tools with:
-
-```bash
 python -m pip install -e ".[dev]"
 ```
-
-The source checkout is the authoritative unreleased installation path. Maintainers should follow the [release and deployment runbook](https://github.com/satwiksps/rigsolve/blob/main/docs/launch-checklist.md) before adding a tag; a tag is rejected unless it points to `main`, matches the package version, and passes the complete release gate.
 
 ## Website
 

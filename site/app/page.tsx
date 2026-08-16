@@ -1,8 +1,9 @@
 import { CopyCommand, TerminalDemo } from "./components/TerminalDemo";
 import { getSiteUrl, repositoryUrl, siteDescription } from "./site-config";
 
-const installCommand =
-  "git clone https://github.com/satwiksps/rigsolve.git && cd rigsolve && python -m pip install -e .";
+const installCommand = "python -m pip install rigsolve";
+
+const pypiUrl = "https://pypi.org/project/rigsolve/";
 
 const compatibilityAxes = [
   { label: "Driver", detail: "runtime ceiling and minor-compatibility floor" },
@@ -183,11 +184,11 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 className="inline-flex min-h-11 items-center rounded-md bg-zinc-100 px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-white"
-                href={repositoryUrl}
+                href={pypiUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                View source{" "}
+                PyPI package{" "}
                 <span className="ml-2" aria-hidden="true">
                   ↗
                 </span>
@@ -408,6 +409,9 @@ export default function Home() {
             className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-zinc-400"
             aria-label="Footer"
           >
+            <a className="hover:text-zinc-200" href={pypiUrl}>
+              PyPI
+            </a>
             <a
               className="hover:text-zinc-200"
               href={`${repositoryUrl}/tree/main/docs`}

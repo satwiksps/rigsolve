@@ -1,13 +1,13 @@
 # Release and deployment runbook
 
-The canonical repository is `https://github.com/satwiksps/rigsolve`. There is no tagged release or PyPI distribution yet; the source checkout from `main` is authoritative until every publication step below succeeds.
+The canonical repository is `https://github.com/satwiksps/rigsolve`. Published releases are available from PyPI and GitHub; `main` may contain changes that are not in the latest release.
 
 ## Repository and publishing prerequisites
 
 1. Keep `main` as the default and only persistent branch. Protect it from deletion and force-pushes, and require the CI and security checks.
 2. Keep private vulnerability reporting and dependency alerts enabled. Automated dependency security fixes and Actions pull-request creation should remain disabled so maintenance cannot create repository branches.
 3. Keep package metadata, documentation links, matrix-update URLs, and workflow repository guards pointed at `satwiksps/rigsolve`.
-4. Confirm the `rigsolve` package name is available on PyPI and perform an appropriate trademark search. Repository and package-name availability are not legal clearance.
+4. Confirm the `rigsolve` PyPI project is owned by the expected maintainers and still uses the repository's trusted publisher.
 5. Create a protected GitHub environment named `pypi`. Configure a PyPI trusted publisher for repository `satwiksps/rigsolve`, workflow `release.yml`, environment `pypi`, and the intended package name. No long-lived PyPI token belongs in GitHub secrets.
 
 ## Validate the release candidate
