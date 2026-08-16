@@ -1,7 +1,7 @@
 export const repositoryUrl = "https://github.com/satwiksps/rigsolve";
 
 export const siteDescription =
-  "Resolve PyTorch, CUDA, and native-extension compatibility from sourced evidence before you install.";
+  "Resolve PyTorch, CUDA, and native extension compatibility.";
 
 export function getSiteUrl(): URL {
   const explicitUrl = process.env.NEXT_PUBLIC_SITE_URL;

@@ -6,6 +6,19 @@ This file records user-visible changes to rigsolve. The format follows
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-16
+
+### Added
+
+- Codecov reporting with OIDC authentication.
+- Grouped monthly Dependabot updates.
+- Wide and square social cards plus an SVG README banner.
+
+### Changed
+
+- Shortened the README, landing page, package description, and browser title.
+- Removed decorative arrows and em dashes from public copy.
+
 ## [0.1.1] - 2026-08-16
 
 ### Added
@@ -37,6 +50,7 @@ This file records user-visible changes to rigsolve. The format follows
 - Installation is opt-in: plan rendering never installs packages, and execution requires an explicit `solve --execute` invocation against the detected local environment.
 - Executable artifact and index URLs require HTTPS, and matrix updates are validated before atomic replacement.
 
-[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/satwiksps/rigsolve/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/satwiksps/rigsolve/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/satwiksps/rigsolve/releases/tag/v0.1.0

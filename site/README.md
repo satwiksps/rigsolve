@@ -1,6 +1,6 @@
 # rigsolve website
 
-The public landing site for [rigsolve](https://github.com/satwiksps/rigsolve). It is a native Next.js App Router project designed to deploy from this repository on Vercel.
+The public [rigsolve](https://github.com/satwiksps/rigsolve) site. It uses Next.js App Router and deploys to Vercel.
 
 ## Local development
 
@@ -19,7 +19,7 @@ Run the complete website gate before committing:
 npm test
 ```
 
-That command verifies formatting, runs ESLint and strict TypeScript checking, and produces a production Next.js build.
+This checks formatting, lint, types, and the production build.
 
 ## Deploy to Vercel
 
@@ -40,9 +40,11 @@ No database, server-side secret, or external service is required.
 
 ## Structure
 
-- `app/page.tsx` — Tailwind-based landing page and structured data
-- `app/globals.css` — Tailwind entry point, font tokens, and global accessibility rules
-- `app/components/TerminalDemo.tsx` — keyboard-accessible command examples and copy controls
-- `app/layout.tsx` — canonical, Open Graph, and social metadata
-- `app/manifest.ts`, `app/robots.ts`, `app/sitemap.ts` — deployment metadata
-- `public/og.png` — generated social preview card
+- `app/page.tsx`: landing page and structured data
+- `app/globals.css`: Tailwind entry point and global styles
+- `app/components/TerminalDemo.tsx`: command examples
+- `app/layout.tsx`: canonical and social metadata
+- `app/manifest.ts`, `app/robots.ts`, `app/sitemap.ts`: deployment metadata
+- `public/social-card.png`: Open Graph and wide post image
+- `public/social-card-square.png`: square post image
+- `public/github-social-preview.jpg`: GitHub repository preview image
