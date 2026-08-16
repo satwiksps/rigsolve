@@ -11,6 +11,8 @@ This file records user-visible changes to rigsolve. The format follows
 - Replaced abstract project artwork with terminal-based problem and solution visuals.
 - Moved social assets to `docs/assets`.
 - Limited automatic Vercel deployments to the `main` production branch.
+- Expanded the README with the project workflow, compatibility dimensions, output formats, scope, safety model, and documentation map.
+- Hardened Codecov reporting to fail CI on upload errors and skip uploads from untrusted fork pull requests.
 
 ## [0.1.2] - 2026-08-16
 
