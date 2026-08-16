@@ -78,6 +78,7 @@ include = [
   "/examples",
   "/.github/scripts",
 ]
+exclude = ["/docs/assets"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-config --strict-markers"

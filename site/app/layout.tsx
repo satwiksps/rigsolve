@@ -2,7 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
-import { getSiteUrl, repositoryUrl, siteDescription } from "./site-config";
+import {
+  getSiteUrl,
+  repositoryUrl,
+  siteDescription,
+  socialImageUrl,
+} from "./site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/social-card.png",
+        url: socialImageUrl,
         width: 1774,
         height: 887,
         alt: "rigsolve social card",
@@ -49,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "rigsolve",
     description: siteDescription,
-    images: ["/social-card.png"],
+    images: [socialImageUrl],
   },
   category: "technology",
 };

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="site/public/rigsolve-banner.svg" alt="rigsolve. GPU stack compatibility, resolved." width="100%">
+  <img src="https://raw.githubusercontent.com/satwiksps/rigsolve/main/docs/assets/rigsolve-banner.svg" alt="rigsolve turns a GPU target into a compatible torch, CUDA, and extension plan." width="100%">
 </p>
 
 # rigsolve
@@ -125,10 +125,10 @@ Use [CONTRIBUTING.md](CONTRIBUTING.md) for code and matrix changes. Report new i
 
 ## Social assets
 
-- [Wide social card](site/public/social-card.png)
-- [Square social card](site/public/social-card-square.png)
-- [GitHub social preview](site/public/github-social-preview.jpg)
-- [README banner](site/public/rigsolve-banner.svg)
+- [Wide social card](https://github.com/satwiksps/rigsolve/blob/main/docs/assets/social-card.png)
+- [Square social card](https://github.com/satwiksps/rigsolve/blob/main/docs/assets/social-card-square.png)
+- [GitHub social preview](https://github.com/satwiksps/rigsolve/blob/main/docs/assets/github-social-preview.jpg)
+- [README banner](https://github.com/satwiksps/rigsolve/blob/main/docs/assets/rigsolve-banner.svg)
 
 ## License
 

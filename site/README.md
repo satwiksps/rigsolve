@@ -28,6 +28,8 @@ This checks formatting, lint, types, and the production build.
 3. Leave the framework, install, build, and output settings at their auto-detected Next.js defaults.
 4. Deploy.
 
+`vercel.json` enables Git deployments only for `main`. Pull requests do not create preview deployments.
+
 Vercel supplies `VERCEL_PROJECT_PRODUCTION_URL`, which the site uses for canonical metadata, `robots.txt`, and `sitemap.xml`. For a custom production domain, set:
 
 ```text
@@ -45,6 +47,6 @@ No database, server-side secret, or external service is required.
 - `app/components/TerminalDemo.tsx`: command examples
 - `app/layout.tsx`: canonical and social metadata
 - `app/manifest.ts`, `app/robots.ts`, `app/sitemap.ts`: deployment metadata
-- `public/social-card.png`: Open Graph and wide post image
-- `public/social-card-square.png`: square post image
-- `public/github-social-preview.jpg`: GitHub repository preview image
+- `../docs/assets/social-card.png`: Open Graph and wide post image
+- `../docs/assets/social-card-square.png`: square post image
+- `../docs/assets/github-social-preview.jpg`: GitHub repository preview image

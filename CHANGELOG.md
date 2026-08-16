@@ -6,6 +6,12 @@ This file records user-visible changes to rigsolve. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Replaced abstract project artwork with terminal-based problem and solution visuals.
+- Moved social assets to `docs/assets`.
+- Limited automatic Vercel deployments to the `main` production branch.
+
 ## [0.1.2] - 2026-08-16
 
 ### Added

@@ -1,4 +1,6 @@
 export const repositoryUrl = "https://github.com/satwiksps/rigsolve";
+export const socialImageUrl =
+  "https://raw.githubusercontent.com/satwiksps/rigsolve/main/docs/assets/social-card.png";
 
 export const siteDescription =
   "Resolve PyTorch, CUDA, and native extension compatibility.";
