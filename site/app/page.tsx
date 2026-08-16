@@ -19,19 +19,19 @@ const steps = [
     number: "01",
     command: "rigsolve detect",
     title: "Profile the environment",
-    body: "Read the GPU, driver, toolkit, Python, platform, and installed distribution metadata. Every probe is optional, and torch is never imported.",
+    body: "Read GPU, driver, toolkit, Python, platform, and installed package metadata without importing torch.",
   },
   {
     number: "02",
     command: "rigsolve solve",
-    title: "Resolve the complete tuple",
-    body: "Search driver, CUDA, Python, platform, torch, ABI, architecture, release-coupling, and known-broken constraints together.",
+    title: "Resolve the stack",
+    body: "Check driver, CUDA, Python, platform, torch, ABI, architecture, package coupling, and known broken constraints.",
   },
   {
     number: "03",
     command: "rigsolve why",
     title: "Review the answer",
-    body: "Return an ordered plan or a reduced conflict. Plans identify their matrix version and evidence depth; conflict reports retain the constraints that ruled the request out.",
+    body: "Print an ordered plan or a reduced conflict with its evidence.",
   },
 ] as const;
 
@@ -66,15 +66,15 @@ const evidenceLevels = [
 const operatingPrinciples = [
   {
     title: "Offline by default",
-    body: "Detection, solving, diagnosis, and matrix inspection use local state and the bundled matrix. There is no telemetry.",
+    body: "Detect, solve, check, and inspect the bundled matrix offline. No telemetry.",
   },
   {
     title: "Plans before side effects",
-    body: "The CLI prints reviewable pip, uv, Dockerfile, TOML, JSON, or Colab output. --execute installs and then runs local verification.",
+    body: "Review pip, uv, Dockerfile, TOML, JSON, or Colab output first. --execute installs and verifies.",
   },
   {
     title: "Provenance is required",
-    body: "Every admissible matrix fact records its source, harvest date, and evidence depth. Unknown dimensions stay unknown.",
+    body: "Every matrix fact includes its source, date, and evidence level.",
   },
 ] as const;
 
@@ -88,7 +88,7 @@ export default function Home() {
     description: siteDescription,
     url: getSiteUrl().toString(),
     codeRepository: repositoryUrl,
-    softwareVersion: "0.1.1",
+    softwareVersion: "0.1.2",
     license: `${repositoryUrl}/blob/main/LICENSE`,
     offers: {
       "@type": "Offer",
@@ -147,10 +147,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              GitHub{" "}
-              <span className="ml-2 text-zinc-400" aria-hidden="true">
-                ↗
-              </span>
+              GitHub
             </a>
           </div>
         </nav>
@@ -169,13 +166,12 @@ export default function Home() {
               </span>
             </div>
             <h1 className="max-w-2xl text-5xl font-semibold tracking-[-0.055em] text-balance text-zinc-50 sm:text-6xl lg:text-[4.35rem] lg:leading-[1.02]">
-              Resolve a PyTorch GPU stack before you install it.
+              Resolve your PyTorch GPU stack.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-zinc-400">
-              rigsolve profiles the machine without importing torch, evaluates
-              the compatibility constraints ordinary package metadata misses,
-              and prints a sourced install or repair plan. Executed plans are
-              checked on the local machine after installation.
+              Detect the machine, resolve overlooked compatibility constraints,
+              and get a sourced install or repair plan. Executed plans are
+              verified locally.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -185,10 +181,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                PyPI package{" "}
-                <span className="ml-2" aria-hidden="true">
-                  ↗
-                </span>
+                PyPI package
               </a>
               <a
                 className="inline-flex min-h-11 items-center rounded-md border border-white/15 px-5 text-sm font-medium text-zinc-200 transition-colors hover:border-white/25 hover:bg-white/[0.04]"
@@ -201,7 +194,7 @@ export default function Home() {
             <CopyCommand value={installCommand} />
 
             <p className="mt-5 font-mono text-[11px] leading-5 text-zinc-400">
-              v0.1.1 alpha / Python 3.10+ / Linux x86_64 + NVIDIA CUDA /
+              v0.1.2 alpha / Python 3.10+ / Linux x86_64 + NVIDIA CUDA /
               Apache-2.0
             </p>
           </div>
@@ -235,12 +228,11 @@ export default function Home() {
             <div>
               <p className="font-mono text-xs text-sky-400">HOW IT WORKS</p>
               <h2 className="mt-5 max-w-md text-3xl font-semibold tracking-[-0.035em] text-zinc-100 sm:text-4xl">
-                From a broken environment to a reviewable plan.
+                From failure to install plan.
               </h2>
               <p className="mt-5 max-w-md leading-7 text-zinc-400">
-                One deterministic constraint system connects machine state,
-                requested packages, and sourced compatibility facts. The same
-                inputs produce the same plan.
+                Machine state, package requests, and sourced facts enter one
+                deterministic solver.
               </p>
             </div>
 
@@ -276,12 +268,11 @@ export default function Home() {
             <div>
               <p className="font-mono text-xs text-sky-400">EVIDENCE MODEL</p>
               <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-zinc-100 sm:text-4xl">
-                The result says what the evidence actually proves.
+                Know what each result proves.
               </h2>
               <p className="mt-5 leading-7 text-zinc-400">
-                A wheel filename can prove that an artifact exists. It cannot
-                prove that the artifact imports or runs a kernel on your GPU.
-                rigsolve keeps those claims separate.
+                Artifact metadata, successful imports, and GPU runs are separate
+                claims. rigsolve reports the evidence it has.
               </p>
 
               <div className="mt-8 border-l-2 border-sky-400 bg-sky-400/[0.04] px-5 py-4">
@@ -301,10 +292,7 @@ export default function Home() {
                 className="mt-7 inline-flex text-sm font-medium text-zinc-300 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-white"
                 href={`${repositoryUrl}/blob/main/docs/trust-model.md`}
               >
-                Read the trust model{" "}
-                <span className="ml-2" aria-hidden="true">
-                  →
-                </span>
+                Read the trust model
               </a>
             </div>
 
@@ -356,11 +344,11 @@ export default function Home() {
             <div>
               <p className="font-mono text-xs text-sky-400">OPEN SOURCE</p>
               <h2 className="mt-5 max-w-2xl text-3xl font-semibold tracking-[-0.035em] text-zinc-100 sm:text-4xl">
-                Add the compatibility fact you wish you had found.
+                Share a broken combination.
               </h2>
               <p className="mt-5 max-w-2xl leading-7 text-zinc-400">
-                Precise known-broken reports and reviewed verification results
-                improve the matrix for hardware the maintainers may never own.
+                Precise reports and reviewed verification results extend
+                hardware coverage.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -393,7 +381,7 @@ export default function Home() {
               rigsolve
             </p>
             <p className="mt-2 text-xs text-zinc-400">
-              GPU compatibility, resolved with sourced evidence.
+              GPU stack compatibility, resolved.
             </p>
           </div>
           <nav

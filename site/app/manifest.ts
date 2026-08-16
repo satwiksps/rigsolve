@@ -4,7 +4,7 @@ import { siteDescription } from "./site-config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "rigsolve — GPU compatibility resolver",
+    name: "rigsolve",
     short_name: "rigsolve",
     description: siteDescription,
     start_url: "/",

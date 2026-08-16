@@ -1,0 +1,38 @@
+version: 2
+
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      python-dependencies:
+        patterns: ["*"]
+    open-pull-requests-limit: 1
+    rebase-strategy: disabled
+    commit-message:
+      prefix: deps
+
+  - package-ecosystem: npm
+    directory: /site
+    schedule:
+      interval: monthly
+    groups:
+      site-dependencies:
+        patterns: ["*"]
+    open-pull-requests-limit: 1
+    rebase-strategy: disabled
+    commit-message:
+      prefix: deps
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 1
+    rebase-strategy: disabled
+    commit-message:
+      prefix: deps

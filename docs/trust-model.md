@@ -53,7 +53,7 @@ Anecdotes are useful issue reports but should not become broad negative facts wi
 
 `rigsolve verify` uses child processes so a native crash is isolated. A successful import is reported as import-tested. Only probes with real GPU code can be reported as GPU-tested, and only when that code returns successfully. Today, real kernel probes exist for torch and flash-attn; other built-in probes are import-only.
 
-`rigsolve solve --execute` runs these checks automatically after installation. This answers the useful local question—whether the selected stack imports or runs on this machine—without broadening that result to untested machines. `--skip-verify` is available for deliberate install-only workflows.
+`rigsolve solve --execute` runs these checks after installation. It checks whether the selected stack imports or runs on this machine without generalizing that result to other machines. `--skip-verify` supports install-only workflows.
 
 `--contribute` serializes the result and machine profile locally. It does not attest the host, sign the payload, or upload it. Maintainer review is required before converting that payload into matrix data.
 

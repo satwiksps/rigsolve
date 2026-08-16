@@ -16,10 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
-  title: {
-    default: "rigsolve — GPU compatibility resolver",
-    template: "%s | rigsolve",
-  },
+  title: "rigsolve",
   description: siteDescription,
   applicationName: "rigsolve",
   authors: [{ name: "rigsolve contributors", url: repositoryUrl }],
@@ -37,22 +34,22 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "rigsolve",
-    title: "Resolve the GPU stack before you install it.",
+    title: "rigsolve",
     description: siteDescription,
     images: [
       {
-        url: "/og.png",
-        width: 1731,
-        height: 909,
-        alt: "rigsolve — GPU compatibility resolver",
+        url: "/social-card.png",
+        width: 1774,
+        height: 887,
+        alt: "rigsolve social card",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Resolve the GPU stack before you install it.",
+    title: "rigsolve",
     description: siteDescription,
-    images: ["/og.png"],
+    images: ["/social-card.png"],
   },
   category: "technology",
 };
