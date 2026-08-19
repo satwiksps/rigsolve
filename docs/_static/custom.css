@@ -1,0 +1,37 @@
+:root {
+  --rigsolve-blue: #155eef;
+}
+
+.sidebar-brand-text {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sd-card {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.sd-card-title {
+  font-weight: 650;
+}
+
+.hero-copy {
+  font-size: 1.15rem;
+  max-width: 48rem;
+}
+
+.evidence-table td:first-child {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+code.literal {
+  border-radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rigsolve-blue: #7aa2ff;
+  }
+}

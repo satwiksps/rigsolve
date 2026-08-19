@@ -6,6 +6,7 @@
 
 [![CI](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml/badge.svg)](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml)
 [![Codecov](https://codecov.io/gh/satwiksps/rigsolve/graph/badge.svg)](https://codecov.io/gh/satwiksps/rigsolve)
+[![Documentation](https://readthedocs.org/projects/rigsolve/badge/?version=latest)](https://rigsolve.readthedocs.io/en/latest/)
 [![PyPI](https://img.shields.io/pypi/v/rigsolve.svg)](https://pypi.org/project/rigsolve/)
 [![Python](https://img.shields.io/pypi/pyversions/rigsolve.svg)](https://pypi.org/project/rigsolve/)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
@@ -154,11 +155,12 @@ rigsolve is an alpha project. Its current matrix is intentionally narrower than 
 
 ## Documentation
 
-- [CLI reference](docs/cli.md)
-- [Architecture](docs/architecture.md)
-- [Trust and evidence model](docs/trust-model.md)
-- [Compatibility matrix schema](docs/matrix-schema.md)
-- [Evidence harvesting](docs/harvesting.md)
+- [Complete documentation](https://rigsolve.readthedocs.io/en/latest/)
+- [Installation](https://rigsolve.readthedocs.io/en/latest/getting-started/installation/)
+- [Quickstart](https://rigsolve.readthedocs.io/en/latest/getting-started/quickstart/)
+- [CLI reference](https://rigsolve.readthedocs.io/en/latest/cli/)
+- [Python API](https://rigsolve.readthedocs.io/en/latest/reference/python-api/)
+- [Trust and evidence model](https://rigsolve.readthedocs.io/en/latest/trust-model/)
 - [Contribution guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 

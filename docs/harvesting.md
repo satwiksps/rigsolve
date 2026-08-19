@@ -4,14 +4,13 @@ Harvesting converts upstream metadata into candidate tier-0 facts. It never prom
 
 The scheduled workflow is:
 
-```mermaid
-flowchart LR
-  U["GitHub · PyPI · PyTorch · NVIDIA"] --> H["cached harvesters"]
-  H --> N["normalize and validate"]
-  N --> D["deterministic TOML diff"]
-  D --> A["short-lived workflow artifact"]
-  A -->|"maintainer review"| M["accepted matrix change"]
-```
+The scheduled process is:
+
+1. cached harvesters read GitHub, PyPI, PyTorch, and NVIDIA sources;
+2. parsers normalize candidate facts and validate their fields;
+3. deterministic TOML serialization produces a semantic diff;
+4. CI stores the candidate matrix and patch as a short-lived artifact;
+5. a maintainer reviews and applies an accepted change.
 
 There is intentionally no automated repository-write edge.
 

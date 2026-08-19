@@ -1,5 +1,10 @@
 import { CopyCommand, TerminalDemo } from "./components/TerminalDemo";
-import { getSiteUrl, repositoryUrl, siteDescription } from "./site-config";
+import {
+  documentationUrl,
+  getSiteUrl,
+  repositoryUrl,
+  siteDescription,
+} from "./site-config";
 
 const installCommand = "python -m pip install rigsolve";
 
@@ -137,7 +142,7 @@ export default function Home() {
             </a>
             <a
               className="hidden text-sm text-zinc-400 transition-colors hover:text-zinc-100 md:inline"
-              href={`${repositoryUrl}/tree/main/docs`}
+              href={documentationUrl}
             >
               Docs
             </a>
@@ -290,7 +295,7 @@ export default function Home() {
 
               <a
                 className="mt-7 inline-flex text-sm font-medium text-zinc-300 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-white"
-                href={`${repositoryUrl}/blob/main/docs/trust-model.md`}
+                href={`${documentationUrl}trust-model/`}
               >
                 Read the trust model
               </a>
@@ -391,10 +396,7 @@ export default function Home() {
             <a className="hover:text-zinc-200" href={pypiUrl}>
               PyPI
             </a>
-            <a
-              className="hover:text-zinc-200"
-              href={`${repositoryUrl}/tree/main/docs`}
-            >
+            <a className="hover:text-zinc-200" href={documentationUrl}>
               Docs
             </a>
             <a className="hover:text-zinc-200" href={`${repositoryUrl}/issues`}>

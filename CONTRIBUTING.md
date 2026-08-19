@@ -22,6 +22,7 @@ python -m venv .venv
 . .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
+python -m pip install -r docs/requirements.txt
 ```
 
 PowerShell activation uses:
@@ -31,6 +32,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
+python -m pip install -r docs/requirements.txt
 ```
 
 Run the project checks before submitting a change:
@@ -42,6 +44,7 @@ python -m mypy src/rigsolve
 python -m pytest --cov=rigsolve --cov-report=term-missing
 python -m build
 python .github/scripts/check_docs.py
+python -m sphinx -W --keep-going -b dirhtml docs docs/_build/dirhtml
 ```
 
 For website changes, also run `npm ci` and `npm test` from `site/`.

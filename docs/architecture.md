@@ -2,31 +2,15 @@
 
 rigsolve is an offline-first Python CLI with four boundaries: detection, evidence, solving, and execution. Keeping those boundaries explicit lets it diagnose an environment whose native imports are already broken.
 
-```mermaid
-flowchart TD
-  CLI["CLI\nrigsolve.cli"]
-  DET["detection\ncommands · files · package metadata"]
-  PROF["immutable MachineProfile"]
-  DATA["bundled or cached matrix TOML"]
-  STORE["validated MatrixStore\nindexes · merge · digest"]
-  CSP["constraint model\npropagation · search · scoring"]
-  UNSAT["minimal unsatisfiable subset"]
-  PLAN["deterministic InstallPlan"]
-  EMIT["pip · uv · TOML · Docker · JSON · Colab"]
-  CHECK["environment checker"]
-  VERIFY["child-process smoke probes"]
+The main processing path is:
 
-  CLI --> DET --> PROF
-  CLI --> STORE
-  DATA --> STORE
-  PROF --> CSP
-  STORE --> CSP
-  CSP --> UNSAT
-  CSP --> PLAN --> EMIT
-  PROF --> CHECK
-  STORE --> CHECK
-  CLI --> VERIFY
-```
+1. Detection reads commands, files, platform APIs, and package metadata into an immutable `MachineProfile`.
+2. Bundled and cached TOML facts are validated and indexed by `MatrixStore`.
+3. The profile and matrix become a constraint problem with propagation, search, and deterministic scoring.
+4. A satisfiable assignment becomes an `InstallPlan`; an unsatisfiable assignment becomes a reduced conflict.
+5. Plan renderers produce pip, uv, TOML, Docker, JSON, or Colab output.
+
+Diagnosis evaluates the profile and matrix independently of plan generation. Verification runs installed packages in child processes.
 
 ## Detection boundary
 

@@ -8,6 +8,8 @@ This file records user-visible changes to rigsolve. The format follows
 
 ### Changed
 
+- Added a complete versioned Sphinx documentation site for Read the Docs, including tutorials, task guides, troubleshooting, CLI and Python API references, evidence documentation, and offline PDF/EPUB builds.
+- Linked the package metadata, README, landing page, and CI to the Read the Docs site.
 - Replaced abstract project artwork with terminal-based problem and solution visuals.
 - Moved social assets to `docs/assets`.
 - Limited automatic Vercel deployments to the `main` production branch.

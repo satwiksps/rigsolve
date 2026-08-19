@@ -1,4 +1,5 @@
 export const repositoryUrl = "https://github.com/satwiksps/rigsolve";
+export const documentationUrl = "https://rigsolve.readthedocs.io/en/latest/";
 export const socialImageUrl =
   "https://raw.githubusercontent.com/satwiksps/rigsolve/main/docs/assets/social-card.png";
 

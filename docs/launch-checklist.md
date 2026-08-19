@@ -16,11 +16,13 @@ Run the same gates as CI from a clean checkout:
 
 ```bash
 python -m pip install -e ".[dev]" twine
+python -m pip install -r docs/requirements.txt
 python -m ruff check .
 python -m ruff format --check .
 python -m mypy src/rigsolve
 python -m pytest --cov=rigsolve --cov-report=term-missing
 python .github/scripts/check_docs.py
+python -m sphinx -W --keep-going -b dirhtml docs docs/_build/dirhtml
 python -m rigsolve --matrix src/rigsolve/data/matrix.toml matrix stats --json
 python -m build
 python -m twine check dist/*
@@ -58,3 +60,13 @@ Install the published wheel in a separate clean environment and run `rigsolve --
 6. Verify the deployed page on narrow mobile and desktop viewports, then exercise its repository, documentation, installation, and contribution links.
 
 The website requires no database, server-side secret, or external runtime service.
+
+## Publish documentation on Read the Docs
+
+1. Import `satwiksps/rigsolve` at `app.readthedocs.org`.
+2. Use `.readthedocs.yaml` from the repository root.
+3. Build `main` as `latest` and point `stable` at the newest supported release tag.
+4. Confirm HTML search, source links, PDF, and EPUB downloads.
+5. Keep the public documentation URL in `pyproject.toml`, the README, and the landing page aligned with the Read the Docs project slug.
+
+See [the Read the Docs maintainer guide](maintainers/read-the-docs.md) for exact settings.

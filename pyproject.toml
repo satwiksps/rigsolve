@@ -53,7 +53,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/satwiksps/rigsolve"
-Documentation = "https://github.com/satwiksps/rigsolve#readme"
+Documentation = "https://rigsolve.readthedocs.io/"
 Issues = "https://github.com/satwiksps/rigsolve/issues"
 Source = "https://github.com/satwiksps/rigsolve"
 
