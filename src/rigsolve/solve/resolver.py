@@ -1198,6 +1198,10 @@ def _make_plan(
         warnings.append(
             "selected versions are metadata-backed; use --execute to install and verify them on this machine"
         )
+    if profile.gpus and not profile.compute_capabilities:
+        warnings.append(
+            "GPU compute capability is unknown; architecture compatibility remains unverified"
+        )
     torch_candidate = assignment.get("torch")
     for package in sorted(assignment):
         candidate = assignment[package]
@@ -1469,6 +1473,8 @@ def resolve(
     preference: str = "verified",
     allow_source_build: bool = False,
 ) -> ResolutionOutcome:
+    if isinstance(specs, (str, bytes)):
+        raise UserInputError("specs must be a sequence of requirement strings")
     requirements = parse_requirements(specs)
     csp, missing, domains = build_csp(
         requirements,

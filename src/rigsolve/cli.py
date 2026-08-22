@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 import traceback
@@ -14,6 +15,7 @@ from typing import NoReturn
 from packaging.utils import canonicalize_name
 
 from rigsolve import __version__
+from rigsolve._atomic import atomic_write
 from rigsolve.detect import MachineProfile, detect_machine_profile, profile_from_target
 from rigsolve.diagnose import check_environment, format_check_report
 from rigsolve.doctor import format_doctor, run_doctor
@@ -21,6 +23,7 @@ from rigsolve.errors import ExitCode, RigsolveError, UserInputError
 from rigsolve.evidence import evidence_label
 from rigsolve.matrix import (
     DEFAULT_UPDATE_URL,
+    Fact,
     MatrixStore,
     fetch_update,
     load_with_cached_update,
@@ -38,6 +41,12 @@ from rigsolve.verify.smoke import PROBES, contribution_payload, verify_packages
 class _ArgumentParser(argparse.ArgumentParser):
     def error(self, message: str) -> NoReturn:
         raise UserInputError(message)
+
+
+def _nonempty_argument(value: str) -> str:
+    if not value.strip():
+        raise argparse.ArgumentTypeError("value must not be empty")
+    return value
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -59,9 +68,11 @@ def _parser() -> argparse.ArgumentParser:
 
     solve = commands.add_parser("solve", help="produce a compatible, ordered install plan")
     solve.add_argument("--want", nargs="+", required=True, metavar="SPEC")
-    solve.add_argument("--python", dest="python_version")
+    solve.add_argument("--python", dest="python_version", type=_nonempty_argument)
     solve.add_argument(
-        "--target", help='hypothetical target, e.g. "A100,driver=550.54,python=3.11,linux"'
+        "--target",
+        type=_nonempty_argument,
+        help='hypothetical target, e.g. "A100,driver=550.54,python=3.11,linux"',
     )
     solve.add_argument(
         "--prefer",
@@ -93,8 +104,8 @@ def _parser() -> argparse.ArgumentParser:
 
     why = commands.add_parser("why", help="explain why a set of pins cannot coexist")
     why.add_argument("spec", nargs="+")
-    why.add_argument("--target")
-    why.add_argument("--python", dest="python_version")
+    why.add_argument("--target", type=_nonempty_argument)
+    why.add_argument("--python", dest="python_version", type=_nonempty_argument)
     why.add_argument("--allow-source-build", action="store_true")
 
     verify = commands.add_parser("verify", help="run isolated imports and available kernel probes")
@@ -103,9 +114,16 @@ def _parser() -> argparse.ArgumentParser:
         "--no-gpu", action="store_true", help="run import checks without GPU kernels"
     )
     verify.add_argument("--timeout", type=float, default=60.0)
-    verify.add_argument("--contribute", action="store_true")
     verify.add_argument(
-        "--contribution-file", type=Path, default=Path("rigsolve-verification.json")
+        "--contribute",
+        action="store_true",
+        help="write a local JSON payload; requires at least one probe result",
+    )
+    verify.add_argument(
+        "--contribution-file",
+        type=Path,
+        default=Path("rigsolve-verification.json"),
+        help="contribution path (default: rigsolve-verification.json)",
     )
 
     matrix = commands.add_parser("matrix", help="inspect or update compatibility facts")
@@ -134,8 +152,10 @@ def _store(path: Path | None) -> MatrixStore:
 
 
 def _profile(target: str | None = None, python_version: str | None = None) -> MachineProfile:
-    profile = detect_machine_profile(target=target) if target else detect_machine_profile()
-    if python_version:
+    profile = (
+        detect_machine_profile(target=target) if target is not None else detect_machine_profile()
+    )
+    if python_version is not None:
         profile = profile_from_target(f"python={python_version}", base=profile)
     return profile
 
@@ -154,9 +174,9 @@ def _solve_command(args: argparse.Namespace, store: MatrixStore) -> int:
         raise UserInputError("--skip-verify is valid only with --execute")
     if args.execute and args.output != "pip":
         raise UserInputError("--execute is supported only with --output pip")
-    if args.execute and args.target:
+    if args.execute and args.target is not None:
         raise UserInputError("--execute cannot use a hypothetical --target")
-    if args.execute and args.python_version:
+    if args.execute and args.python_version is not None:
         raise UserInputError(
             "--execute cannot override --python; run rigsolve with the intended interpreter"
         )
@@ -234,6 +254,8 @@ def _why_command(args: argparse.Namespace, store: MatrixStore) -> int:
 
 
 def _verify_command(args: argparse.Namespace, store: MatrixStore) -> int:
+    if not math.isfinite(args.timeout) or args.timeout <= 0:
+        raise UserInputError("--timeout must be a finite positive number")
     profile = detect_machine_profile()
     packages = args.packages
     if packages is None:
@@ -241,14 +263,28 @@ def _verify_command(args: argparse.Namespace, store: MatrixStore) -> int:
         packages = sorted(installed.intersection(PROBES))
     results = verify_packages(packages, run_gpu=not args.no_gpu, timeout=args.timeout)
     print(format_smoke_results(results), end="")
+    if not results:
+        print("Install a supported package, or pass --package NAME to verify an expected package.")
+        return int(ExitCode.ENVIRONMENT_BROKEN)
     if args.contribute:
         payload = contribution_payload(results, profile.to_dict(), store.matrix_version)
-        args.contribution_file.write_text(payload, encoding="utf-8", newline="\n")
+        atomic_write(args.contribution_file, payload, create_parent=False)
         print(
             f"Wrote {args.contribution_file}. Review it, then attach it to a verification issue; nothing was uploaded.",
             file=sys.stderr,
         )
     return int(ExitCode.OK if all(result.ok for result in results) else ExitCode.ENVIRONMENT_BROKEN)
+
+
+def _fact_package_names(fact: Fact) -> tuple[str, ...]:
+    package = getattr(fact, "package", None)
+    if package:
+        return (package,)
+    packages = getattr(fact, "packages", ())
+    if packages:
+        return tuple(packages)
+    matched = getattr(fact, "match_map", {}).get("package")
+    return (matched,) if matched else ()
 
 
 def _matrix_command(args: argparse.Namespace, store: MatrixStore) -> int:
@@ -293,13 +329,12 @@ def _matrix_command(args: argparse.Namespace, store: MatrixStore) -> int:
         facts = store.facts
         if args.package:
             name = canonicalize_name(args.package)
-            facts = tuple(
-                fact
-                for fact in facts
-                if getattr(fact, "package", None) == name
-                or name in getattr(fact, "packages", ())
-                or getattr(fact, "match_map", {}).get("package") == name
-            )
+            facts = tuple(fact for fact in facts if name in _fact_package_names(fact))
+            if not facts:
+                raise UserInputError(
+                    f"no matrix facts found for package {args.package!r}; "
+                    "run 'rigsolve matrix stats' to list available packages"
+                )
         payload = {
             "metadata": store.metadata.to_mapping(),
             "digest": store.digest,
@@ -310,11 +345,7 @@ def _matrix_command(args: argparse.Namespace, store: MatrixStore) -> int:
         else:
             print(f"Matrix {store.matrix_version} | sha256:{store.digest}")
             for fact in facts:
-                package = (
-                    getattr(fact, "package", None)
-                    or ",".join(getattr(fact, "packages", ()))
-                    or getattr(fact, "match_map", {}).get("package", "")
-                )
+                package = ",".join(_fact_package_names(fact))
                 version = getattr(fact, "version", "")
                 print(f"- {fact.__class__.__name__}: {package} {version} | tier {int(fact.tier)}")
                 print(f"  {fact.source.citation()}")
@@ -342,6 +373,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         args = parser.parse_args(argv)
         if args.command == "detect":
+            if args.matrix is not None:
+                raise UserInputError("--matrix cannot be used with detect")
             return _detect_command(args)
         store = _store(args.matrix)
         if args.command == "solve":

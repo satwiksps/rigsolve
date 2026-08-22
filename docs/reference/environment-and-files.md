@@ -42,9 +42,9 @@ rigsolve never uploads these files automatically.
 
 ## Network access
 
-Only these normal operations require network access:
+rigsolve initiates network access for these operations:
 
 - `matrix update` downloads matrix data;
 - `solve --execute` invokes pip, which may contact configured indexes or direct artifact URLs.
 
-Detection, resolution, diagnosis, explanation, verification, matrix inspection, doctor checks, and plan rendering are offline unless an external tool invoked by the user has separate behavior.
+Detection, resolution, diagnosis, explanation, matrix inspection, doctor checks, and plan rendering do not initiate network access. Verification runs installed package code without a network sandbox.

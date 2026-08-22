@@ -106,8 +106,13 @@ async function copyText(value: string): Promise<void> {
   input.style.opacity = "0";
   document.body.append(input);
   input.select();
-  document.execCommand("copy");
-  input.remove();
+  try {
+    if (!document.execCommand("copy")) {
+      throw new Error("clipboard copy failed");
+    }
+  } finally {
+    input.remove();
+  }
 }
 
 function CopyButton({ label, value }: { label: string; value: string }) {

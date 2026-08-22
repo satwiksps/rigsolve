@@ -142,3 +142,11 @@ def test_generic_nonzero_gpu_exit_is_reported() -> None:
 def test_headerless_parser_requires_fields() -> None:
     with pytest.raises(ValueError, match="fields are required"):
         parse_nvidia_smi_csv("0, NVIDIA T4, GPU-one, 7.5, 15360, 470.239")
+
+
+def test_headerless_parser_rejects_scalar_fields() -> None:
+    with pytest.raises(TypeError, match="sequence of field names"):
+        parse_nvidia_smi_csv(
+            "0, NVIDIA T4, GPU-one, 7.5, 15360, 470.239",
+            fields="index,name,uuid,compute_cap,memory.total,driver_version",  # type: ignore[arg-type]
+        )

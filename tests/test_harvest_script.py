@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import importlib.util
+import os
+import subprocess
+import sys
 from pathlib import Path
 from types import ModuleType
 
@@ -14,6 +17,32 @@ def _script_module() -> ModuleType:
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def test_offline_harvest_with_empty_cache_fails_cleanly(tmp_path: Path) -> None:
+    root = Path(__file__).parents[1]
+    environment = os.environ.copy()
+    environment["PYTHONPATH"] = str(root / "src")
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(root / ".github" / "scripts" / "harvest_matrix.py"),
+            "--matrix",
+            str(root / "src" / "rigsolve" / "data" / "matrix.toml"),
+            "--cache",
+            str(tmp_path / "empty-cache"),
+            "--offline",
+        ],
+        cwd=root,
+        env=environment,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "Traceback" not in result.stderr
+    assert "rerun without --offline to populate --cache" in result.stderr
 
 
 def test_harvester_never_downgrades_verified_evidence() -> None:

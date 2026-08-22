@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -28,6 +29,7 @@ def _target_path(document: Path, raw_target: str) -> Path | None:
 
 
 def main() -> int:
+    argparse.ArgumentParser(description=__doc__).parse_args()
     failures: list[str] = []
     documents = sorted(
         path

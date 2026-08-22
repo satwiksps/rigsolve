@@ -13,12 +13,6 @@
 
 **rigsolve is an offline-first compatibility resolver for PyTorch, CUDA, and native GPU extensions.** It profiles a machine without importing torch, evaluates the relevant compatibility constraints together, and produces a sourced install or repair plan.
 
-```console
-$ rigsolve check
-[FAIL] torch was built for CUDA 12.4, but flash-attn expects CUDA 11
-  fix: re-resolve torch and the extension on one CUDA line
-```
-
 ## Why rigsolve
 
 GPU package failures rarely come from one version mismatch. A working environment can depend on the NVIDIA driver, CUDA runtime, local toolkit, GPU architecture, Python ABI, Linux platform, glibc, torch build, extension build, and C++ ABI agreeing at the same time.
@@ -62,7 +56,7 @@ python -m pip install --index-url https://download.pytorch.org/whl/cu126 torch==
 python -m pip install 'https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl#sha256=4e2f9e39313266b1544b68138b15b91ee6221eccf14f7902b7c6620351340810'
 ```
 
-Planning is read-only. To install the selected packages on the detected machine and run the available verification probes, opt in explicitly:
+Resolution does not install packages. To install the selected packages on the detected machine and run the available verification probes, opt in explicitly:
 
 ```bash
 rigsolve solve --want torch --execute
@@ -142,7 +136,8 @@ Read the [trust model](docs/trust-model.md), [matrix schema](docs/matrix-schema.
 
 ## Safety and privacy
 
-- Detection, solving, diagnosis, verification, and matrix inspection are offline by default.
+- Detection, solving, diagnosis, and matrix inspection are offline by default.
+- Verification runs installed package code without a network sandbox.
 - No telemetry or automatic report upload is included.
 - Native imports run in child processes so a loader abort does not crash the diagnostic parent.
 - `verify --contribute` writes a local JSON file for review and uploads nothing.
@@ -151,7 +146,7 @@ Read the [trust model](docs/trust-model.md), [matrix schema](docs/matrix-schema.
 
 ## Current scope
 
-rigsolve is an alpha project. Its current matrix is intentionally narrower than the full GPU package ecosystem: it prioritizes Linux x86_64, NVIDIA CUDA, PyTorch, and selected native extensions. A clean check means that no applicable known violation was found; it does not prove that an unrecorded combination works.
+rigsolve 1.0 has a deliberately narrow support scope: Linux x86_64, NVIDIA CUDA, PyTorch, and selected native extensions. A clean check means that no applicable known violation was found; it does not prove that an unrecorded combination works.
 
 ## Documentation
 

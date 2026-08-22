@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import os
-import tempfile
 from collections.abc import Mapping
 from contextlib import suppress
 from dataclasses import dataclass
@@ -12,6 +11,7 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
+from rigsolve._atomic import atomic_write
 from rigsolve.errors import MatrixError
 
 from .schema import MatrixValidationError
@@ -50,23 +50,6 @@ def default_cache_dir() -> Path:
     if root:
         return Path(root) / "rigsolve"
     return Path.home() / ".cache" / "rigsolve"
-
-
-def _atomic_text(path: Path, payload: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    handle, temporary_name = tempfile.mkstemp(
-        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
-    )
-    try:
-        with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as temporary:
-            temporary.write(payload)
-            temporary.flush()
-            os.fsync(temporary.fileno())
-        os.replace(temporary_name, path)
-    except BaseException:
-        with suppress(FileNotFoundError):
-            os.unlink(temporary_name)
-        raise
 
 
 def _read_metadata(path: Path) -> dict[str, str]:
@@ -139,7 +122,7 @@ def fetch_update(
             last_modified=metadata.get("last_modified"),
             cache_path=matrix_path,
         )
-    except (URLError, OSError, TimeoutError) as exc:
+    except (URLError, OSError, TimeoutError, ValueError) as exc:
         raise MatrixUpdateError(f"cannot fetch matrix update: {exc}") from exc
 
     try:
@@ -154,7 +137,7 @@ def fetch_update(
     save_matrix(matrix_path, remote)
     etag = response_headers.get("ETag")
     last_modified = response_headers.get("Last-Modified")
-    _atomic_text(
+    atomic_write(
         metadata_path,
         json.dumps(
             {"url": url, "etag": etag, "last_modified": last_modified},

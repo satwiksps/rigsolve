@@ -54,7 +54,7 @@ CUDA plans select an applicable NVIDIA CUDA base image. Plans without CUDA use a
 $ rigsolve solve --want torch --output json > plan.json
 ```
 
-JSON is intended for CI policy, review tools, and integrations. Treat unknown keys as forward-compatible additions during the pre-1.0 period.
+JSON is intended for CI policy, review tools, and integrations. Documented fields are stable within the 1.x line; consumers should tolerate additional keys in compatible releases.
 
 ## Colab output
 

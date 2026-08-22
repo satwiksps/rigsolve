@@ -3,6 +3,7 @@ from __future__ import annotations
 from tests.test_resolver import store
 
 from rigsolve.detect import (
+    CudaToolkit,
     DriverInfo,
     GPUDevice,
     InstalledEnvironment,
@@ -97,6 +98,109 @@ def test_lockfile_reports_missing_and_drifted_packages(tmp_path) -> None:
     report = check_environment(profile, store(), lockfile=lockfile)
     codes = {item.code for item in report.violations}
     assert {"lock-version-drift", "lock-missing"}.issubset(codes)
+
+
+def test_lockfile_architecture_aliases_are_normalised(tmp_path) -> None:
+    plan = InstallPlan(
+        requested=(),
+        steps=(),
+        matrix_version="test",
+        matrix_digest=store().digest,
+        target={"architecture": "x86_64"},
+    )
+    lockfile = tmp_path / "rigsolve.toml"
+    write_lockfile(plan, lockfile)
+    profile = MachineProfile(platform=PlatformInfo(architecture="x86-64"))
+
+    report = check_environment(profile, store(), lockfile=lockfile)
+
+    assert not any(item.code == "lock-target-architecture" for item in report.violations)
+
+
+def test_lockfile_checks_toolkit_runtime_and_profile_abi_targets(tmp_path) -> None:
+    plan = InstallPlan(
+        requested=(),
+        steps=(),
+        matrix_version="test",
+        matrix_digest=store().digest,
+        target={
+            "toolkit_version": "11.8",
+            "toolkit_path": "/opt/cuda-11.8",
+            "cuda_runtime": "11.8",
+            "cxx11abi": True,
+        },
+    )
+    lockfile = tmp_path / "rigsolve.toml"
+    write_lockfile(plan, lockfile)
+    profile = MachineProfile(
+        driver=DriverInfo("560.35", "12.6"),
+        toolkit=CudaToolkit("12.4", path="/opt/cuda-12.4"),
+        cxx11_abi=False,
+    )
+
+    codes = {
+        item.code for item in check_environment(profile, store(), lockfile=lockfile).violations
+    }
+
+    assert {
+        "lock-target-toolkit-version",
+        "lock-target-toolkit-path",
+        "lock-target-cuda-runtime",
+        "lock-target-cxx11abi",
+    }.issubset(codes)
+
+
+def test_lockfile_toolkit_path_comparison_is_case_sensitive_on_linux(tmp_path) -> None:
+    plan = InstallPlan(
+        requested=(),
+        steps=(),
+        matrix_version="test",
+        matrix_digest=store().digest,
+        target={"toolkit_path": "/opt/CUDA"},
+    )
+    lockfile = tmp_path / "rigsolve.toml"
+    write_lockfile(plan, lockfile)
+    profile = MachineProfile(
+        toolkit=CudaToolkit("12.4", path="/opt/cuda"),
+        platform=PlatformInfo(os="linux"),
+    )
+
+    report = check_environment(profile, store(), lockfile=lockfile)
+
+    assert any(item.code == "lock-target-toolkit-path" for item in report.violations)
+
+
+def test_lockfile_checks_package_python_and_platform_tags(tmp_path) -> None:
+    plan = InstallPlan(
+        requested=("example",),
+        steps=(
+            InstallStep(
+                "example",
+                "1.0",
+                python_tag="cp999",
+                platform_tag="win_amd64",
+            ),
+        ),
+        matrix_version="test",
+        matrix_digest=store().digest,
+    )
+    lockfile = tmp_path / "rigsolve.toml"
+    write_lockfile(plan, lockfile)
+    profile = MachineProfile(
+        platform=PlatformInfo(
+            os="linux",
+            architecture="x86_64",
+            python_version="3.12",
+            python_abi_tag="cp312",
+        ),
+        installed=InstalledEnvironment(packages=(InstalledPackage("example", "1.0"),)),
+    )
+
+    codes = {
+        item.code for item in check_environment(profile, store(), lockfile=lockfile).violations
+    }
+
+    assert {"lock-python-drift", "lock-platform-drift"}.issubset(codes)
 
 
 def test_lockfile_checks_target_and_native_build_dimensions(tmp_path) -> None:

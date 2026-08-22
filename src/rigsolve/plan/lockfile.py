@@ -12,6 +12,7 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - Python 3.10
     import tomli as tomllib
 
+from rigsolve._atomic import atomic_write
 from rigsolve.errors import UserInputError
 from rigsolve.plan.emit.toml import emit_toml
 from rigsolve.plan.install import InstallPlan, InstallStep
@@ -74,7 +75,7 @@ def _optional_string(item: Mapping[str, Any], field: str, *, context: str) -> st
 
 
 def write_lockfile(plan: InstallPlan, path: Path) -> None:
-    path.write_text(emit_toml(plan), encoding="utf-8", newline="\n")
+    atomic_write(path, emit_toml(plan), create_parent=False)
 
 
 def load_lockfile(path: Path) -> InstallPlan:

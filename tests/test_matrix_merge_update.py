@@ -3,8 +3,10 @@ from __future__ import annotations
 from email.message import Message
 from urllib.error import HTTPError
 
+import pytest
+
 from rigsolve.matrix import MatrixStore
-from rigsolve.matrix.update import fetch_update
+from rigsolve.matrix.update import MatrixUpdateError, fetch_update
 
 
 def _matrix(version: str, fact_version: str) -> str:
@@ -33,6 +35,11 @@ def test_merge_is_deterministic_and_keeps_both_distinct_facts() -> None:
     assert merged.matrix_version == "two"
     assert [fact.version for fact in merged.wheels] == ["1.0", "2.0"]
     assert left.merge(right).digest == left.merge(right).digest
+
+
+def test_update_wraps_malformed_url(tmp_path) -> None:
+    with pytest.raises(MatrixUpdateError, match="cannot fetch matrix update"):
+        fetch_update("not-a-valid-url", cache_dir=tmp_path, merge=False)
 
 
 class _Response:

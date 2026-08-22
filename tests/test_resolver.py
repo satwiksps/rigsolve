@@ -89,6 +89,36 @@ def test_resolve_adds_torch_and_uses_direct_extension_wheel() -> None:
     assert outcome.plan.weakest_tier == 0
 
 
+def test_unknown_gpu_architecture_is_reported_as_unverified() -> None:
+    profile = profile_from_target("madeup,driver=580.65,python=3.12,linux")
+    outcome = resolve(("torch",), profile, load_bundled())
+
+    assert outcome.plan is not None
+    assert any("GPU compute capability is unknown" in warning for warning in outcome.plan.warnings)
+
+
+def test_bundled_matrix_resolves_supported_pure_python_package() -> None:
+    profile = profile_from_target("cpu,python=3.12,linux")
+    outcome = resolve(("transformers",), profile, load_bundled())
+
+    assert outcome.failure is None
+    assert outcome.plan is not None
+    assert [(step.package, step.version) for step in outcome.plan.steps] == [
+        ("transformers", "5.15.0")
+    ]
+    step = outcome.plan.steps[0]
+    assert step.artifact_url is not None
+    assert step.artifact_url.startswith("https://files.pythonhosted.org/")
+    assert step.python_tag == "py3"
+    assert step.platform_tag == "any"
+
+
+def test_resolve_rejects_a_scalar_requirement_string() -> None:
+    profile = profile_from_target("python=3.12,linux")
+    with pytest.raises(UserInputError, match="sequence of requirement strings"):
+        resolve("torch", profile, load_bundled())  # type: ignore[arg-type]
+
+
 def test_unsat_explanation_calls_missing_python_wheel_a_conflict() -> None:
     profile = profile_from_target("RTX 4090,driver=560.35,python=3.13,linux")
     outcome = resolve(("flash-attn==2.8.3",), profile, store())

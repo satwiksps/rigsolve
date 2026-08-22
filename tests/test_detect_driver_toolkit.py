@@ -46,6 +46,12 @@ def test_windows_driver_thresholds_are_distinct() -> None:
     assert max_cuda_runtime_for_driver("560.76", os_name="windows") == "12.6"
 
 
+@pytest.mark.parametrize("os_name", ["plan9", ""])
+def test_unknown_operating_system_does_not_use_linux_driver_rules(os_name: str) -> None:
+    assert max_cuda_runtime_for_driver("560.28", os_name=os_name) is None
+    assert driver_supports_runtime("560.28", "12.6", os_name=os_name) is None
+
+
 def test_driver_support_status_preserves_unknown() -> None:
     assert driver_supports_runtime("535.104", "12.2") is True
     assert driver_supports_runtime("535.104", "12.4") is True

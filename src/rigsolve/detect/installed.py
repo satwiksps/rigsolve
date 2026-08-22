@@ -16,6 +16,8 @@ from dataclasses import dataclass
 from importlib import metadata
 from pathlib import Path
 
+from packaging.utils import canonicalize_name
+
 from .model import (
     DetectionIssue,
     InstalledEnvironment,
@@ -35,14 +37,12 @@ class InstalledProbeResult:
 
 
 def canonicalize_package_name(name: str) -> str:
-    return re.sub(r"[-_.]+", "-", name).lower()
+    return canonicalize_name(name)
 
 
 def _cuda_from_digits(digits: str) -> str:
     if len(digits) <= 2:
         return str(int(digits))
-    if len(digits) == 3:
-        return f"{int(digits[:2])}.{int(digits[2:])}"
     return f"{int(digits[:2])}.{int(digits[2:])}"
 
 

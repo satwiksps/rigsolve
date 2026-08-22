@@ -191,6 +191,8 @@ def try_normalise_wheel_filename(filename_or_url: str) -> NormalizedWheel | None
 def normalise_many(filenames: Iterable[str]) -> tuple[NormalizedWheel, ...]:
     """Parse wheel assets, skipping non-wheel release files deterministically."""
 
+    if isinstance(filenames, (str, bytes)):
+        raise TypeError("filenames must be an iterable of filename strings")
     result: list[NormalizedWheel] = []
     for filename in filenames:
         if _asset_basename(filename).lower().endswith(".whl"):

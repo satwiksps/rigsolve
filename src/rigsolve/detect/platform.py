@@ -253,6 +253,3 @@ def detect_platform(
         container_runtime=runtime,
     )
     return PlatformProbeResult(platform=info, issues=tuple(issues))
-
-
-detect_platform_info = detect_platform

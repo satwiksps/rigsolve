@@ -6,15 +6,30 @@ This file records user-visible changes to rigsolve. The format follows
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-08-22
+
+### Added
+
+- Published versioned Sphinx documentation with tutorials, task guides, troubleshooting, CLI and Python API references, and offline PDF and EPUB builds.
+
 ### Changed
 
-- Added a complete versioned Sphinx documentation site for Read the Docs, including tutorials, task guides, troubleshooting, CLI and Python API references, evidence documentation, and offline PDF/EPUB builds.
-- Linked the package metadata, README, landing page, and CI to the Read the Docs site.
-- Replaced abstract project artwork with terminal-based problem and solution visuals.
-- Moved social assets to `docs/assets`.
-- Limited automatic Vercel deployments to the `main` production branch.
-- Expanded the README with the project workflow, compatibility dimensions, output formats, scope, safety model, and documentation map.
-- Hardened Codecov reporting to fail CI on upload errors and skip uploads from untrusted fork pull requests.
+- Established the documented CLI, Python API, lockfile, matrix-schema, and JSON-output contracts for the 1.x line.
+- Clarified the supported platform scope and the network and code-execution boundaries of verification.
+- Updated the README, project site, package metadata, and CI to use the canonical documentation and release identity.
+
+### Fixed
+
+- Rejected empty execution overrides and non-finite verification timeouts instead of bypassing safeguards or returning internal errors.
+- Made zero-result and unsupported verification requests fail clearly without writing false contribution evidence.
+- Checked lockfiles against toolkit, runtime, ABI, Python, platform, and artifact details.
+- Rejected invalid matrix filters, malformed update URLs, incomplete offline harvest caches, invalid CUDA labels, and unsupported driver operating systems with actionable errors.
+- Replaced matrix, cache, lockfile, and verification output files atomically so failed writes preserve existing state.
+- Reported failed website clipboard operations and rejected malformed production origins.
+
+### Security
+
+- Required annotated release tags from `main`, cross-checked all version metadata, pinned build tooling, and prevented release artifacts from being overwritten on retry.
 
 ## [0.1.2] - 2026-08-16
 
@@ -60,7 +75,8 @@ This file records user-visible changes to rigsolve. The format follows
 - Installation is opt-in: plan rendering never installs packages, and execution requires an explicit `solve --execute` invocation against the detected local environment.
 - Executable artifact and index URLs require HTTPS, and matrix updates are validated before atomic replacement.
 
-[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/satwiksps/rigsolve/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/satwiksps/rigsolve/compare/v0.1.2...v1.0.0
 [0.1.2]: https://github.com/satwiksps/rigsolve/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/satwiksps/rigsolve/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/satwiksps/rigsolve/releases/tag/v0.1.0

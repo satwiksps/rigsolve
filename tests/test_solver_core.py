@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from rigsolve.solve import CSP, Constraint, minimal_unsatisfiable_subset, solve_csp
 
 
@@ -39,6 +41,13 @@ def test_scorer_selects_global_best() -> None:
 
     assert result.assignment == {"x": 3, "y": 2}
     assert result.score == (5, 3)
+
+
+@pytest.mark.parametrize("max_solutions", [0, -1])
+def test_solver_rejects_nonpositive_solution_limits(max_solutions: int) -> None:
+    csp = CSP(domains={"x": (1, 2)}, constraints=())
+    with pytest.raises(ValueError, match="max_solutions must be positive"):
+        solve_csp(csp, max_solutions=max_solutions)
 
 
 def test_mus_is_irreducible_and_omits_irrelevant_constraints() -> None:

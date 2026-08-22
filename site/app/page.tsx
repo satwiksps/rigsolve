@@ -75,7 +75,7 @@ const operatingPrinciples = [
   },
   {
     title: "Plans before side effects",
-    body: "Review pip, uv, Dockerfile, TOML, JSON, or Colab output first. --execute installs and verifies.",
+    body: "Review pip, uv, Dockerfile, TOML, JSON, or Colab output first. --execute installs the selected plan.",
   },
   {
     title: "Provenance is required",
@@ -93,7 +93,7 @@ export default function Home() {
     description: siteDescription,
     url: getSiteUrl().toString(),
     codeRepository: repositoryUrl,
-    softwareVersion: "0.1.2",
+    softwareVersion: "1.0.0",
     license: `${repositoryUrl}/blob/main/LICENSE`,
     offers: {
       "@type": "Offer",
@@ -175,8 +175,8 @@ export default function Home() {
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-zinc-400">
               Detect the machine, resolve overlooked compatibility constraints,
-              and get a sourced install or repair plan. Executed plans are
-              verified locally.
+              and get a sourced install or repair plan. By default, executed
+              plans are verified locally.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -199,8 +199,7 @@ export default function Home() {
             <CopyCommand value={installCommand} />
 
             <p className="mt-5 font-mono text-[11px] leading-5 text-zinc-400">
-              v0.1.2 alpha / Python 3.10+ / Linux x86_64 + NVIDIA CUDA /
-              Apache-2.0
+              v1.0.0 / Python 3.10+ / Linux x86_64 + NVIDIA CUDA / Apache-2.0
             </p>
           </div>
 
@@ -288,8 +287,7 @@ export default function Home() {
                   2026.08.15 / 114 sourced facts / 1 blocked upstream edge
                 </p>
                 <p className="mt-2 text-xs leading-5 text-zinc-400">
-                  Plans start from published build metadata; executed plans are
-                  verified on the local machine.
+                  Plans start from published build metadata.
                 </p>
               </div>
 

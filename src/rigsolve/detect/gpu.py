@@ -111,6 +111,8 @@ def parse_nvidia_smi_csv(
     whole device.
     """
 
+    if isinstance(fields, (str, bytes)):
+        raise TypeError("fields must be a sequence of field names")
     rows = [row for row in csv.reader(output.splitlines(), skipinitialspace=True) if row]
     if not rows:
         return ()

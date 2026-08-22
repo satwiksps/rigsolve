@@ -16,6 +16,7 @@ from packaging.version import InvalidVersion, Version
 
 from rigsolve.harvest import (
     CachedHTTPClient,
+    GitHubHarvestError,
     GitHubReleaseHarvester,
     NvidiaTableHarvester,
     PyPIHarvester,
@@ -236,7 +237,17 @@ def main() -> int:
         raise SystemExit("--max-new-facts must be positive")
 
     base = MatrixStore.load(args.matrix)
-    harvested = _harvest(args)
+    try:
+        harvested = _harvest(args)
+    except GitHubHarvestError as error:
+        if not args.offline:
+            raise
+        print(
+            f"error: offline harvest cache is incomplete ({error}); "
+            "rerun without --offline to populate --cache",
+            file=sys.stderr,
+        )
+        return 1
     changes: dict[str, tuple[Fact, ...]] = {}
     for family in FAMILY_ORDER:
         changes[family] = _new_or_changed(

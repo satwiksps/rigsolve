@@ -16,7 +16,7 @@ Use this form while troubleshooting. Detection issues are shown with the compone
 $ rigsolve detect --json > machine-profile.json
 ```
 
-JSON is stable enough for inspection and CI artifacts, but consumers should tolerate new keys in pre-1.0 releases.
+The documented JSON fields are stable within the 1.x line. Consumers should tolerate additional keys in compatible releases.
 
 ## Probe order
 

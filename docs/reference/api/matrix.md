@@ -14,7 +14,7 @@ The matrix API validates, indexes, queries, merges, serializes, and updates comp
 .. autoclass:: rigsolve.matrix.MatrixStats
 ```
 
-`MatrixStore` is immutable. Query methods return tuples, and `data` exposes the validated frozen `MatrixData` value.
+`MatrixStore` validates `MatrixData` at construction and builds private mapping-proxy indexes. Query methods return tuples, and `data` exposes the validated frozen `MatrixData` value. `save_matrix` serializes that data through a temporary file and atomically replaces the destination.
 
 ## Serialize and merge
 

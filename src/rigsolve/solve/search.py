@@ -58,6 +58,8 @@ def solve_csp(
     more important than a fast but approximate answer.
     """
 
+    if max_solutions is not None and max_solutions <= 0:
+        raise ValueError("max_solutions must be positive")
     scoring = scorer or _default_score
     optimise = scorer is not None
     domains = {name: list(values) for name, values in csp.domains.items()}

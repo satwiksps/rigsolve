@@ -20,6 +20,8 @@ class DoctorCheck:
 
 def run_doctor(profile: MachineProfile, store: MatrixStore) -> tuple[DoctorCheck, ...]:
     age = (date.today() - store.metadata.generated_date).days
+    nvidia_smi = shutil.which("nvidia-smi")
+    nvcc = shutil.which("nvcc")
     return (
         DoctorCheck("rigsolve", True, f"version {__version__}"),
         DoctorCheck(
@@ -37,15 +39,13 @@ def run_doctor(profile: MachineProfile, store: MatrixStore) -> tuple[DoctorCheck
         ),
         DoctorCheck(
             "nvidia-smi",
-            shutil.which("nvidia-smi") is not None,
-            "available"
-            if shutil.which("nvidia-smi")
-            else "not found; GPU fields remain unconstrained",
+            nvidia_smi is not None,
+            "available" if nvidia_smi else "not found; GPU fields remain unconstrained",
         ),
         DoctorCheck(
             "nvcc",
-            shutil.which("nvcc") is not None,
-            "available" if shutil.which("nvcc") else "not found; binary wheels are unaffected",
+            nvcc is not None,
+            "available" if nvcc else "not found; binary wheels are unaffected",
         ),
         DoctorCheck(
             "platform",

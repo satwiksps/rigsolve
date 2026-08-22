@@ -13,6 +13,7 @@ from rigsolve.matrix import (
     TorchBuildFact,
     VerificationTier,
     WheelFact,
+    cuda_lines_compatible,
     dump_matrix,
     load_bundled,
 )
@@ -41,6 +42,44 @@ def test_fact_schema_is_frozen_and_normalises_package_names() -> None:
     assert fact.package == "flash-attn"
     with pytest.raises(FrozenInstanceError):
         fact.version = "9"  # type: ignore[misc]
+
+
+def test_wheel_mapping_rejects_source_build_as_unknown_field() -> None:
+    with pytest.raises(MatrixValidationError, match=r"unknown wheel field\(s\): source_build"):
+        WheelFact.from_mapping(
+            {
+                "package": "example",
+                "version": "1.0",
+                "url": "https://example.test/example.whl",
+                "source_build": False,
+                "tier": 0,
+                "source": {
+                    "kind": "pypi-json",
+                    "url": "https://pypi.org/pypi/example/1.0/json",
+                    "harvested": "2026-08-15",
+                },
+            }
+        )
+
+
+@pytest.mark.parametrize(
+    ("left", "right", "expected"),
+    [
+        ("cu12", "12.8", True),
+        ("cu124", "12.4", True),
+        ("12", "12.8", True),
+        ("12", "12.6.3", True),
+        ("12.x", "12.8", True),
+        ("13.x", "13.0.0", True),
+        ("", "", False),
+        ("banana", "banana.x", False),
+        ("12.bad", "12.bad", False),
+    ],
+)
+def test_cuda_line_compatibility_validates_and_normalises_labels(
+    left: str, right: str, expected: bool
+) -> None:
+    assert cuda_lines_compatible(left, right) is expected
 
 
 def test_tier_zero_is_explicitly_not_verified() -> None:

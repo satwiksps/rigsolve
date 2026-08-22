@@ -80,9 +80,22 @@ def _padded(value: tuple[int, ...], length: int = 4) -> tuple[int, ...]:
     return (value + (0,) * length)[:length]
 
 
+def _os_family(os_name: str | None) -> str | None:
+    if os_name is None:
+        return "linux"
+    normalized = os_name.strip().lower()
+    if normalized.startswith("win"):
+        return "windows"
+    if normalized.startswith("linux"):
+        return "linux"
+    return None
+
+
 def _minimums(os_name: str | None) -> Iterable[tuple[str, str]]:
-    normalized = (os_name or "linux").strip().lower()
-    return _WINDOWS_MINIMUMS if normalized.startswith("win") else _LINUX_MINIMUMS
+    family = _os_family(os_name)
+    if family is None:
+        return ()
+    return _WINDOWS_MINIMUMS if family == "windows" else _LINUX_MINIMUMS
 
 
 def _at_least(current: tuple[int, ...], minimum: tuple[int, ...]) -> bool:
@@ -136,7 +149,9 @@ def driver_supports_runtime(
     if requested is None or driver is None:
         return None
     if minor_compatibility:
-        family = "windows" if (os_name or "").lower().startswith("win") else "linux"
+        family = _os_family(os_name)
+        if family is None:
+            return None
         minimum_value = _MINOR_COMPATIBILITY_FLOORS[family].get(requested[0])
         if minimum_value is None:
             return None

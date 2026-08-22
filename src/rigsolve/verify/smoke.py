@@ -7,6 +7,7 @@ segfault without taking down the diagnostic process that needs to explain it.
 from __future__ import annotations
 
 import json
+import math
 import subprocess
 import sys
 from collections.abc import Callable, Sequence
@@ -15,6 +16,7 @@ from typing import Any
 
 from packaging.utils import canonicalize_name
 
+from rigsolve.errors import UserInputError
 from rigsolve.verify.tiers import VerificationTier
 
 _SENTINEL = "RIGSOLVE_RESULT="
@@ -152,9 +154,20 @@ def run_probe(
             error=f"probe exceeded {timeout:g}s timeout",
             returncode=124,
         )
+    except OSError as exc:
+        return SmokeResult(
+            package=probe.distribution,
+            ok=False,
+            tier=None,
+            error=f"could not start probe: {exc}",
+            returncode=126,
+        )
     payload = _parse_result(process.stdout)
     if process.returncode != 0 or payload is None:
-        error = process.stderr.strip() or "probe exited without a structured result"
+        error = process.stderr.strip()
+        if error.startswith("Traceback (most recent call last):"):
+            error = error.splitlines()[-1].strip()
+        error = error or "probe exited without a structured result"
         return SmokeResult(
             package=probe.distribution,
             ok=False,
@@ -180,13 +193,20 @@ def verify_packages(
     run_gpu: bool = True,
     timeout: float = 60.0,
 ) -> tuple[SmokeResult, ...]:
+    if not math.isfinite(timeout) or timeout <= 0:
+        raise ValueError("timeout must be a finite positive number")
+    if isinstance(packages, (str, bytes)):
+        raise TypeError("packages must be a sequence of package names, not a string")
     names = tuple(PROBES) if packages is None else tuple(packages)
     results = []
     for name in names:
         normalized = canonicalize_name(name)
         probe = PROBES.get(normalized)
         if probe is None:
-            probe = SmokeProbe(distribution=normalized, module=normalized.replace("-", "_"))
+            raise UserInputError(
+                f"unsupported verification package {normalized!r}; choose one of: "
+                + ", ".join(sorted(PROBES))
+            )
         results.append(run_probe(probe, run_gpu=run_gpu, timeout=timeout))
     return tuple(results)
 

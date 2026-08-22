@@ -28,7 +28,7 @@ Detection commands use bounded subprocess calls. The command runner is injectabl
 
 ## Evidence boundary
 
-`rigsolve.matrix.schema` defines frozen dataclasses for each fact family. Construction validates fields, URLs, version syntax, provenance, tiers, and family-specific invariants. `MatrixStore` adds immutable indexes and cross-fact validation.
+`rigsolve.matrix.schema` defines frozen dataclasses for each fact family. Construction validates fields, URLs, version syntax, provenance, tiers, and family-specific invariants. `MatrixStore` performs cross-fact validation and builds private mapping-proxy indexes of the validated data.
 
 The package ships `src/rigsolve/data/matrix.toml` for offline use. A validated cached update can be merged over it. Matrix writes use a temporary file plus atomic replacement, so an interrupted download cannot leave a partially written active cache.
 
@@ -82,7 +82,6 @@ Verification imports packages in child interpreters. A segfault or loader abort 
 | `detect`, `why`, `check`, `doctor`, `matrix show/stats` | No | No | No |
 | `solve` (default) | No | Optional lockfile | No |
 | `solve --execute` | Usually, through pip/index URLs | Detected package environment and optional lockfile | Yes; pip output only |
-| `verify --contribute` | No | Local reviewed JSON | No |
 | `matrix update` | Yes | Validated cache/destination | No |
 | Maintainer harvest script | Yes | Candidate bundled matrix or workflow artifact | No |
 

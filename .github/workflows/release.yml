@@ -23,6 +23,10 @@ jobs:
         shell: bash
         run: |
           git fetch --no-tags origin main:refs/remotes/origin/main
+          if [[ "$(git cat-file -t "${GITHUB_REF}")" != "tag" ]]; then
+            echo "Release tags must be annotated tags, not lightweight tags." >&2
+            exit 1
+          fi
           tag_commit="$(git rev-parse "${GITHUB_REF}^{commit}")"
           if ! git merge-base --is-ancestor "$tag_commit" origin/main; then
             echo "Release tags must point to a commit on main." >&2
@@ -33,14 +37,48 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           python - <<'PY'
+          import json
           import os
           import pathlib
+          import re
           import tomllib
 
-          version = tomllib.loads(pathlib.Path("pyproject.toml").read_text(encoding="utf-8"))["project"]["version"]
+          root = pathlib.Path(".")
+          version = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"]["version"]
           tag = os.environ["RELEASE_TAG"]
           if tag != f"v{version}":
               raise SystemExit(f"tag {tag!r} does not match pyproject version {version!r}")
+
+          def matched_version(path, pattern):
+              text = (root / path).read_text(encoding="utf-8")
+              match = re.search(pattern, text, flags=re.MULTILINE)
+              if match is None:
+                  raise SystemExit(f"could not find the current version in {path}")
+              return match.group(1)
+
+          package = json.loads((root / "site/package.json").read_text(encoding="utf-8"))
+          package_lock = json.loads((root / "site/package-lock.json").read_text(encoding="utf-8"))
+          versions = {
+              "src/rigsolve/__init__.py": matched_version(
+                  "src/rigsolve/__init__.py", r'^\s*__version__\s*=\s*["\']([^"\']+)["\']'
+              ),
+              "CITATION.cff": matched_version(
+                  "CITATION.cff", r'^version:\s*["\']?([^\s"\']+)'
+              ),
+              "site/package.json": package["version"],
+              "site/package-lock.json": package_lock["version"],
+              "site/package-lock.json packages root": package_lock["packages"][""]["version"],
+              "site/app/page.tsx softwareVersion": matched_version(
+                  "site/app/page.tsx", r'softwareVersion:\s*["\']([^"\']+)["\']'
+              ),
+              "site/app/page.tsx release label": matched_version(
+                  "site/app/page.tsx", r'\bv(\d+\.\d+\.\d+)\s+/'
+              ),
+          }
+          mismatches = {path: found for path, found in versions.items() if found != version}
+          if mismatches:
+              details = ", ".join(f"{path}={found!r}" for path, found in mismatches.items())
+              raise SystemExit(f"version metadata does not match pyproject version {version!r}: {details}")
           PY
 
   python-tests:
@@ -73,7 +111,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - name: Install contributor dependencies
-        run: python -m pip install -e ".[dev]" twine
+        run: python -m pip install -e ".[dev]" twine==7.0.0
       - name: Lint
         run: python -m ruff check .
       - name: Format
@@ -133,7 +171,7 @@ jobs:
           cache: pip
       - name: Build distributions
         run: |
-          python -m pip install build twine
+          python -m pip install build==1.5.0 twine==7.0.0
           python -m build
           python -m twine check dist/*
       - name: Smoke test the built wheel
@@ -191,12 +229,12 @@ jobs:
         with:
           name: distributions
           path: dist/
-      - name: Create release or replace artifacts on retry
+      - name: Create release or upload artifacts on retry
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            gh release upload "${GITHUB_REF_NAME}" dist/* --clobber
+            gh release upload "${GITHUB_REF_NAME}" dist/*
           else
-            gh release create "${GITHUB_REF_NAME}" dist/* --verify-tag --generate-notes
+            gh release create "${GITHUB_REF_NAME}" dist/* --verify-tag --notes-from-tag
           fi

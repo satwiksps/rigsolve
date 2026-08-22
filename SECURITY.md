@@ -2,12 +2,12 @@
 
 ## Supported versions
 
-rigsolve is pre-1.0. Security fixes are provided for the current `0.1.x` line and the latest commit on `main`.
+Security fixes are provided for the current `1.x` line and the latest commit on `main`.
 
 | Version | Supported |
 |---|---|
-| `0.1.x` | Yes |
-| `< 0.1` | No |
+| `1.x` | Yes |
+| `< 1.0` | No |
 
 ## Reporting a vulnerability
 

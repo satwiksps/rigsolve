@@ -4,6 +4,7 @@ import pytest
 
 from rigsolve.harvest.normalise import (
     WheelFilenameError,
+    normalise_many,
     normalise_wheel_filename,
 )
 
@@ -55,3 +56,8 @@ def test_distribution_and_version_expectations_use_pep_normalisation() -> None:
 def test_invalid_wheel_is_rejected() -> None:
     with pytest.raises(WheelFilenameError, match="invalid wheel"):
         normalise_wheel_filename("not-a-wheel.whl")
+
+
+def test_normalise_many_rejects_a_scalar_filename() -> None:
+    with pytest.raises(TypeError, match="iterable of filename strings"):
+        normalise_many("my_pkg-1.0.0-py3-none-any.whl")

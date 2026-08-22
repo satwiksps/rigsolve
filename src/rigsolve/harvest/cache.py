@@ -5,13 +5,13 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-import tempfile
 from collections.abc import Mapping
-from contextlib import suppress
 from dataclasses import dataclass
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+
+from rigsolve._atomic import atomic_write
 
 
 class HarvestHTTPError(RuntimeError):
@@ -33,23 +33,6 @@ class FetchResult:
 
     def text(self, encoding: str = "utf-8") -> str:
         return self.body.decode(encoding)
-
-
-def _atomic_bytes(path: Path, payload: bytes) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    handle, temporary_name = tempfile.mkstemp(
-        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
-    )
-    try:
-        with os.fdopen(handle, "wb") as temporary:
-            temporary.write(payload)
-            temporary.flush()
-            os.fsync(temporary.fileno())
-        os.replace(temporary_name, path)
-    except BaseException:
-        with suppress(FileNotFoundError):
-            os.unlink(temporary_name)
-        raise
 
 
 class CachedHTTPClient:
@@ -145,8 +128,8 @@ class CachedHTTPClient:
         except (URLError, OSError, TimeoutError) as exc:
             raise HarvestHTTPError(f"cannot fetch {url}: {exc}") from exc
 
-        _atomic_bytes(body_path, body)
-        _atomic_bytes(
+        atomic_write(body_path, body)
+        atomic_write(
             metadata_path,
             (
                 json.dumps(

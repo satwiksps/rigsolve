@@ -1,8 +1,16 @@
 # Release notes
 
-The project follows semantic versioning during the pre-1.0 period with the normal allowance that minor releases may refine APIs and serialized formats. Security fixes and urgent compatibility-data corrections may be released as patches.
+rigsolve follows semantic versioning. The documented public API and serialized formats are stable within the 1.x line. Backward-incompatible changes require a major release.
 
 For the authoritative entry list, see the repository [CHANGELOG.md](https://github.com/satwiksps/rigsolve/blob/main/CHANGELOG.md).
+
+## 1.0.0
+
+- Establishes the stable 1.x CLI, Python API, lockfile, matrix-schema, and JSON-output contracts.
+- Rejects empty execution overrides, invalid verification timeouts, unsupported probes, and package filters that match no facts.
+- Checks lockfiles against toolkit, runtime, ABI, Python, and platform details.
+- Uses atomic replacement for matrix, cache, lockfile, and verification-output writes.
+- Adds the versioned documentation site and hardens the website and release workflow.
 
 ## 0.1.2
 

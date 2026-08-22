@@ -5,8 +5,8 @@ type: software
 abstract: "Finds torch, CUDA, and native-extension combinations supported by sourced evidence and explains every constraint."
 authors:
   - name: "rigsolve contributors"
-version: 0.1.2
-date-released: 2026-08-16
+version: 1.0.0
+date-released: 2026-08-22
 repository-code: "https://github.com/satwiksps/rigsolve"
 url: "https://rigsolve.vercel.app"
 license: Apache-2.0

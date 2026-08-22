@@ -6,10 +6,8 @@ import hashlib
 import json
 import os
 import sys
-import tempfile
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
-from contextlib import suppress
 from dataclasses import dataclass
 from datetime import date
 from importlib import resources
@@ -19,6 +17,8 @@ from typing import Any, TypeVar
 
 from packaging.utils import canonicalize_name
 from packaging.version import InvalidVersion, Version
+
+from rigsolve._atomic import atomic_write
 
 from .provenance import VerificationTier
 from .schema import (
@@ -88,8 +88,27 @@ def cuda_lines_compatible(left: str, right: str) -> bool:
     must match through the minor component.
     """
 
-    left_parts = left.removesuffix(".x").split(".")
-    right_parts = right.removesuffix(".x").split(".")
+    def parts(label: str) -> tuple[int, ...] | None:
+        value = label.lower().removesuffix(".x")
+        if value.startswith("cu"):
+            digits = value[2:]
+            if not digits.isdigit():
+                return None
+            if len(digits) == 2:
+                value = digits
+            elif len(digits) == 3:
+                value = f"{digits[:2]}.{digits[2]}"
+            else:
+                return None
+        tokens = value.split(".")
+        if not 1 <= len(tokens) <= 3 or any(not token.isdigit() for token in tokens):
+            return None
+        return tuple(int(token) for token in tokens)
+
+    left_parts = parts(left)
+    right_parts = parts(right)
+    if left_parts is None or right_parts is None:
+        return False
     if left_parts[0] != right_parts[0]:
         return False
     if len(left_parts) == 1 or len(right_parts) == 1:
@@ -722,19 +741,7 @@ def save_matrix(path: str | os.PathLike[str], matrix: MatrixStore | MatrixData) 
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
     payload = dump_matrix(matrix)
-    handle, temporary_name = tempfile.mkstemp(
-        prefix=f".{destination.name}.", suffix=".tmp", dir=destination.parent
-    )
-    try:
-        with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as temporary:
-            temporary.write(payload)
-            temporary.flush()
-            os.fsync(temporary.fileno())
-        os.replace(temporary_name, destination)
-    except BaseException:
-        with suppress(FileNotFoundError):
-            os.unlink(temporary_name)
-        raise
+    atomic_write(destination, payload, create_parent=False)
     return destination
 
 

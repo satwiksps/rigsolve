@@ -36,9 +36,7 @@ Vercel supplies `VERCEL_PROJECT_PRODUCTION_URL`, which the site uses for canonic
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
 
-The value must include `https://` and should not end with a path.
-
-No database, server-side secret, or external service is required.
+The value must be an HTTPS origin without credentials, a path, query, or fragment.
 
 ## Structure
 

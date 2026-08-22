@@ -2,7 +2,7 @@
 
 The command-line interface is the primary user interface. The Python API is useful for CI policy, custom front ends, matrix tooling, and programmatic inspection.
 
-Public names are exported from `rigsolve.detect`, `rigsolve.matrix`, `rigsolve.solve`, `rigsolve.plan`, and `rigsolve.verify`. Import from those modules rather than internal files. Pre-1.0 releases may add fields and parameters; incompatible changes are recorded in the changelog.
+Public names are exported from `rigsolve.detect`, `rigsolve.matrix`, `rigsolve.solve`, `rigsolve.plan`, and `rigsolve.verify`. Import from those modules rather than internal files. The documented public API follows semantic versioning; backward-incompatible changes require a major release.
 
 ## Minimal example
 

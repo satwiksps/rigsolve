@@ -13,6 +13,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
+from packaging.utils import canonicalize_name
+
 from rigsolve.errors import DetectionError
 
 _UNKNOWN_VALUES = {"", "n/a", "na", "none", "null", "unknown", "[not supported]"}
@@ -314,7 +316,7 @@ class InstalledPackage:
 
     @property
     def normalized_name(self) -> str:
-        return re.sub(r"[-_.]+", "-", self.name).lower()
+        return canonicalize_name(self.name)
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -429,7 +431,7 @@ class InstalledEnvironment:
         )
 
     def get(self, name: str) -> InstalledPackage | None:
-        normalized = re.sub(r"[-_.]+", "-", name).lower()
+        normalized = canonicalize_name(name)
         return next(
             (package for package in self.packages if package.normalized_name == normalized),
             None,

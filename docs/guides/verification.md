@@ -9,6 +9,8 @@ $ rigsolve verify
 ```
 
 Without `--package`, rigsolve probes recognized packages that are already installed.
+If none are installed, no verification occurred: the command exits nonzero and tells you
+to install a supported package or name an expected package with `--package`.
 
 ## Select packages
 
@@ -61,6 +63,9 @@ $ rigsolve verify \
 ```
 
 The payload includes the local machine profile, matrix version, and probe results. It is written locally and is not uploaded, signed, or automatically trusted.
+
+At least one probe must run before rigsolve writes a contribution payload. A failed probe
+is still a result and can be contributed; zero probes produce no file.
 
 Before submitting it:
 

@@ -15,7 +15,7 @@ from rigsolve.detect import InstalledPackage, MachineProfile
 from rigsolve.matrix import MatrixStore, cuda_lines_compatible
 from rigsolve.plan.install import InstallPlan
 from rigsolve.plan.lockfile import load_lockfile
-from rigsolve.solve.resolver import _platform_matches, resolve
+from rigsolve.solve.resolver import _platform_matches, _python_matches, resolve
 
 
 @dataclass(frozen=True, slots=True)
@@ -161,7 +161,7 @@ def _package_assignment(
 
 
 def _normalise_architecture(value: str) -> str:
-    aliases = {"amd64": "x86_64", "x64": "x86_64", "arm64": "aarch64"}
+    aliases = {"amd64": "x86_64", "x64": "x86_64", "x86-64": "x86_64", "arm64": "aarch64"}
     return aliases.get(value.lower(), value.lower())
 
 
@@ -299,6 +299,38 @@ def _target_lockfile_violations(profile: MachineProfile, plan: InstallPlan) -> l
             )
 
     for key, actual_value, label in (
+        ("toolkit_version", profile.cuda_toolkit_version, "CUDA toolkit version"),
+        ("toolkit_path", profile.toolkit.path if profile.toolkit else None, "CUDA toolkit path"),
+        ("cuda_runtime", profile.max_cuda_runtime, "CUDA runtime"),
+        ("cxx11abi", profile.cxx11_abi, "C++11 ABI"),
+    ):
+        expected_value = target.get(key)
+        if expected_value is None:
+            continue
+        if actual_value is None:
+            unknown.append(label)
+            continue
+        expected_text = str(expected_value)
+        actual_text = str(actual_value)
+        case_insensitive = key != "toolkit_path" or (profile.platform.os or "").lower().startswith(
+            "win"
+        )
+        if (
+            expected_text.casefold() == actual_text.casefold()
+            if case_insensitive
+            else expected_text == actual_text
+        ):
+            continue
+        result.append(
+            Violation(
+                code=f"lock-target-{key.replace('_', '-')}",
+                packages=(),
+                summary=f"{label} {actual_value} does not match lockfile target {expected_value}",
+                fix="regenerate the lockfile for this environment",
+            )
+        )
+
+    for key, actual_value, label in (
         ("gpu", profile.gpu_name, "GPU model"),
         ("driver_version", profile.driver_version, "NVIDIA driver"),
     ):
@@ -432,6 +464,31 @@ def _lockfile_violations(
                         fix=f"reinstall {step.package} from the locked artifact",
                     )
                 )
+        if step.python_tag and not _python_matches(
+            tuple(step.python_tag.split(".")),
+            (),
+            profile.python_version,
+            profile.platform.python_abi_tag,
+        ):
+            result.append(
+                Violation(
+                    code="lock-python-drift",
+                    packages=(step.package,),
+                    summary=f"{step.package}'s Python tag does not match the active interpreter",
+                    fix=f"reinstall {step.package} from the locked artifact",
+                )
+            )
+        if step.platform_tag and not _platform_matches(
+            tuple(step.platform_tag.split(".")), profile
+        ):
+            result.append(
+                Violation(
+                    code="lock-platform-drift",
+                    packages=(step.package,),
+                    summary=f"{step.package}'s platform tag does not match this machine",
+                    fix=f"reinstall {step.package} from the locked artifact",
+                )
+            )
     if plan.matrix_digest != store.digest:
         result.append(
             Violation(

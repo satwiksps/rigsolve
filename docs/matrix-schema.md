@@ -224,4 +224,4 @@ Merging is deterministic by fact key. The normal conflict policy selects the str
 
 ## Schema evolution
 
-Pre-1.0 schema changes may occur with a changelog entry and migration guidance. Once the schema is declared stable, incompatible changes require a schema-version increment. Consumers should reject unsupported versions rather than guessing.
+The schema is stable as of rigsolve 1.0.0. Incompatible changes require a schema-version increment. Consumers should reject unsupported versions rather than guessing.

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from tests.test_resolver import MATRIX
@@ -129,14 +130,105 @@ def test_verify_cli_writes_inspectable_contribution(monkeypatch, tmp_path, capsy
     assert "nothing was uploaded" in capsys.readouterr().err
 
 
-def test_verify_cli_with_no_supported_installed_packages_is_a_clean_noop(
+def test_verify_cli_can_contribute_a_failed_probe(monkeypatch, tmp_path) -> None:
+    monkeypatch.setattr("rigsolve.cli.detect_machine_profile", rich_profile)
+    monkeypatch.setattr(
+        "rigsolve.cli.verify_packages",
+        lambda *args, **kwargs: (SmokeResult("torch", False, None, error="ModuleNotFoundError"),),
+    )
+    destination = tmp_path / "verification.json"
+
+    code = main(
+        (
+            "--matrix",
+            str(matrix_path(tmp_path)),
+            "verify",
+            "--package",
+            "torch",
+            "--contribute",
+            "--contribution-file",
+            str(destination),
+        )
+    )
+
+    assert code == 2
+    assert json.loads(destination.read_text(encoding="utf-8"))["results"][0]["ok"] is False
+
+
+def test_verify_contribution_write_failure_preserves_existing_file(
+    monkeypatch, tmp_path, capsys
+) -> None:
+    monkeypatch.setattr("rigsolve.cli.detect_machine_profile", rich_profile)
+    monkeypatch.setattr(
+        "rigsolve.cli.verify_packages",
+        lambda *args, **kwargs: (
+            SmokeResult("torch", True, VerificationTier.IMPORTS, version="2.6.0"),
+        ),
+    )
+    matrix = matrix_path(tmp_path)
+    destination = tmp_path / "verification.json"
+    original = b'{"existing": true}\n'
+    destination.write_bytes(original)
+
+    def interrupt_fsync(_descriptor: int) -> None:
+        raise OSError("simulated contribution fsync failure")
+
+    monkeypatch.setattr(os, "fsync", interrupt_fsync)
+    code = main(
+        (
+            "--matrix",
+            str(matrix),
+            "verify",
+            "--package",
+            "torch",
+            "--no-gpu",
+            "--contribute",
+            "--contribution-file",
+            str(destination),
+        )
+    )
+
+    assert code == 2
+    assert destination.read_bytes() == original
+    assert not tuple(tmp_path.glob(".verification.json.*.tmp"))
+    assert "simulated contribution fsync failure" in capsys.readouterr().err
+
+
+def test_verify_cli_with_no_supported_installed_packages_is_not_success(
     monkeypatch, tmp_path, capsys
 ) -> None:
     profile = MachineProfile(
         platform=PlatformInfo(os="linux", architecture="x86_64", python_version="3.12")
     )
     monkeypatch.setattr("rigsolve.cli.detect_machine_profile", lambda: profile)
-    assert main(("--matrix", str(matrix_path(tmp_path)), "verify")) == 0
+    assert main(("--matrix", str(matrix_path(tmp_path)), "verify")) == 2
+    output = capsys.readouterr().out
+    assert "No supported installed packages" in output
+    assert "--package" in output
+
+
+def test_verify_cli_does_not_write_a_contribution_without_results(
+    monkeypatch, tmp_path, capsys
+) -> None:
+    profile = MachineProfile(
+        platform=PlatformInfo(os="linux", architecture="x86_64", python_version="3.12")
+    )
+    monkeypatch.setattr("rigsolve.cli.detect_machine_profile", lambda: profile)
+    destination = tmp_path / "verification.json"
+
+    code = main(
+        (
+            "--matrix",
+            str(matrix_path(tmp_path)),
+            "verify",
+            "--contribute",
+            "--contribution-file",
+            str(destination),
+        )
+    )
+
+    assert code == 2
+    assert not destination.exists()
     assert "No supported installed packages" in capsys.readouterr().out
 
 
@@ -175,3 +267,24 @@ def test_matrix_show_add_and_doctor_commands(monkeypatch, tmp_path, capsys) -> N
     doctor = capsys.readouterr().out
     assert "matrix:" in doctor
     assert "platform:" in doctor
+
+
+def test_matrix_show_missing_package_fails_actionably(tmp_path, capsys) -> None:
+    source = matrix_path(tmp_path)
+
+    code = main(
+        (
+            "--matrix",
+            str(source),
+            "matrix",
+            "show",
+            "--package",
+            "definitely-missing",
+        )
+    )
+
+    captured = capsys.readouterr()
+    assert code == 64
+    assert "no matrix facts found for package 'definitely-missing'" in captured.err
+    assert "rigsolve matrix stats" in captured.err
+    assert captured.out == ""

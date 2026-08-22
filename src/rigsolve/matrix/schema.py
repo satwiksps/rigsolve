@@ -367,7 +367,6 @@ class WheelFact:
             "python",
             "abi",
             "platform",
-            "source_build",
             "archs",
             "filename",
             "build_tag",

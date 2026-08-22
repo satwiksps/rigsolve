@@ -1,6 +1,6 @@
 # CLI reference
 
-This reference describes rigsolve 0.1.x. Global options precede the subcommand.
+This reference describes rigsolve 1.x. Global options precede the subcommand.
 
 ```text
 rigsolve [--matrix PATH] [--version] COMMAND ...
@@ -97,7 +97,7 @@ Each package import runs in a child interpreter. Without `--package`, rigsolve p
 
 `--no-gpu` stops at import verification. Otherwise, a package is reported as GPU-tested only if its probe contains and successfully runs a real GPU kernel. The current kernel probes are torch and flash-attn; the other built-ins are import-only.
 
-`--contribute` writes a JSON payload, by default `rigsolve-verification.json`. Nothing is uploaded. Review the file before sharing it.
+`--contribute` writes a JSON payload, by default `rigsolve-verification.json`. At least one probe must run; when no supported installed package is found, `verify` exits nonzero and writes no contribution file. A failed probe still counts as a result. Nothing is uploaded. Review the file before sharing it.
 
 ## `matrix`
 

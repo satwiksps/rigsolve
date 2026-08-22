@@ -1,12 +1,17 @@
 from __future__ import annotations
 
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 from tests.test_resolver import MATRIX
 
+from rigsolve import __version__
 from rigsolve.cli import main
 from rigsolve.detect import MachineProfile
+from rigsolve.matrix import MatrixUpdateResult
 from rigsolve.plan import InstallPlan, InstallStep
 from rigsolve.solve.resolver import ResolutionOutcome
 from rigsolve.verify.smoke import SmokeResult
@@ -17,6 +22,41 @@ def matrix_file(tmp_path: Path) -> Path:
     path = tmp_path / "matrix.toml"
     path.write_text(MATRIX, encoding="utf-8")
     return path
+
+
+def test_module_entrypoint_executes_cli() -> None:
+    root = Path(__file__).parents[1]
+    result = subprocess.run(
+        [sys.executable, "-m", "rigsolve", "--version"],
+        cwd=root,
+        env={**os.environ, "PYTHONPATH": str(root / "src")},
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert result.stdout == f"rigsolve {__version__}\n"
+    assert result.stderr == ""
+
+
+def test_check_docs_rejects_unsupported_arguments() -> None:
+    root = Path(__file__).parents[1]
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(root / ".github" / "scripts" / "check_docs.py"),
+            "--definitely-unsupported",
+        ],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 2
+    assert "unrecognized arguments: --definitely-unsupported" in result.stderr
+    assert "Checked relative links" not in result.stdout
 
 
 def test_solve_cli_emits_plan_without_executing(tmp_path, capsys) -> None:
@@ -61,6 +101,67 @@ def test_matrix_stats_json(tmp_path, capsys) -> None:
     assert '"fact_count": 3' in capsys.readouterr().out
 
 
+def test_matrix_update_cli_forwards_all_update_options(monkeypatch, tmp_path, capsys) -> None:
+    source = matrix_file(tmp_path)
+    destination = tmp_path / "updated.toml"
+    url = "https://example.test/updated-matrix.toml"
+    calls: list[tuple[str, str, Path, bool]] = []
+
+    def fetch(url, *, current, destination, merge):
+        calls.append((url, current.matrix_version, destination, merge))
+        return MatrixUpdateResult(
+            store=current,
+            changed=True,
+            not_modified=False,
+            url=url,
+            cache_path=destination,
+        )
+
+    monkeypatch.setattr("rigsolve.cli.fetch_update", fetch)
+
+    code = main(
+        (
+            "--matrix",
+            str(source),
+            "matrix",
+            "update",
+            "--url",
+            url,
+            "--destination",
+            str(destination),
+            "--no-merge",
+        )
+    )
+
+    assert code == 0
+    assert calls == [(url, "test-1", destination, False)]
+    assert capsys.readouterr().out == (f"Matrix updated: test-1 (3 facts)\nCache: {destination}\n")
+
+
+def test_matrix_update_cli_reports_malformed_url_as_expected_error(tmp_path, capsys) -> None:
+    destination = tmp_path / "updated.toml"
+
+    code = main(
+        (
+            "--matrix",
+            str(matrix_file(tmp_path)),
+            "matrix",
+            "update",
+            "--url",
+            "not-a-valid-url",
+            "--destination",
+            str(destination),
+            "--no-merge",
+        )
+    )
+
+    captured = capsys.readouterr()
+    assert code == 1
+    assert captured.out == ""
+    assert "error: cannot fetch matrix update" in captured.err
+    assert not destination.exists()
+
+
 def test_invalid_target_is_a_usage_error(tmp_path, capsys) -> None:
     code = main(
         (
@@ -77,10 +178,49 @@ def test_invalid_target_is_a_usage_error(tmp_path, capsys) -> None:
     assert "unknown target field" in capsys.readouterr().err
 
 
+@pytest.mark.parametrize("timeout", ("0", "-1", "nan", "inf"))
+def test_verify_rejects_invalid_timeout_as_usage_error(
+    timeout, monkeypatch, tmp_path, capsys
+) -> None:
+    monkeypatch.setattr("rigsolve.cli.detect_machine_profile", MachineProfile)
+
+    code = main(
+        (
+            "--matrix",
+            str(matrix_file(tmp_path)),
+            "verify",
+            "--package",
+            "torch",
+            "--timeout",
+            timeout,
+        )
+    )
+
+    assert code == 64
+    assert capsys.readouterr().err == "error: --timeout must be a finite positive number\n"
+
+
 @pytest.mark.parametrize("argv", [("solve",), ("check", "--bogus")])
 def test_argument_parser_errors_use_the_documented_usage_exit(argv, capsys) -> None:
     assert main(argv) == 64
     assert "error:" in capsys.readouterr().err
+
+
+def test_detect_rejects_global_matrix(monkeypatch, tmp_path, capsys) -> None:
+    detected = False
+
+    def detect() -> MachineProfile:
+        nonlocal detected
+        detected = True
+        return MachineProfile()
+
+    monkeypatch.setattr("rigsolve.cli.detect_machine_profile", detect)
+
+    code = main(("--matrix", str(tmp_path / "matrix.toml"), "detect"))
+
+    assert code == 64
+    assert not detected
+    assert "--matrix cannot be used with detect" in capsys.readouterr().err
 
 
 def test_invalid_matrix_is_an_expected_domain_error(tmp_path, capsys) -> None:
@@ -153,6 +293,44 @@ def test_execute_rejects_nonlocal_or_nonpip_plans(extra, monkeypatch, tmp_path, 
     assert code == 64
     assert not executed
     assert "--execute" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("option", ("--target", "--python"))
+def test_execute_rejects_empty_target_overrides(option, monkeypatch, tmp_path, capsys) -> None:
+    plan = InstallPlan(
+        requested=("torch",),
+        steps=(InstallStep(package="torch", version="2.9.0"),),
+        matrix_version="test",
+        matrix_digest="a" * 64,
+    )
+    executed = False
+
+    def forbidden(*args, **kwargs):
+        nonlocal executed
+        executed = True
+
+    monkeypatch.setattr("rigsolve.cli.execute_plan", forbidden)
+    monkeypatch.setattr("rigsolve.cli._profile", lambda *args: MachineProfile())
+    monkeypatch.setattr(
+        "rigsolve.cli.resolve", lambda *args, **kwargs: ResolutionOutcome(plan=plan)
+    )
+    code = main(
+        (
+            "--matrix",
+            str(matrix_file(tmp_path)),
+            "solve",
+            "--want",
+            "torch",
+            "--execute",
+            "--skip-verify",
+            option,
+            "",
+        )
+    )
+
+    assert code == 64
+    assert not executed
+    assert f"argument {option}: value must not be empty" in capsys.readouterr().err
 
 
 @pytest.mark.parametrize(("verification_ok", "expected_code"), ((True, 0), (False, 2)))
