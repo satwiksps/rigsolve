@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import inspect
 import os
+import re
 import sys
+from dataclasses import is_dataclass
 from importlib.metadata import version
 from pathlib import Path
 
@@ -15,13 +18,13 @@ release = version("rigsolve")
 version = ".".join(release.split(".")[:2])
 
 extensions = [
+    "sphinx_immaterial",
     "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx_copybutton",
     "sphinx_design",
 ]
 
@@ -46,6 +49,7 @@ autodoc_default_options = {
     "show-inheritance": True,
 }
 autodoc_typehints = "description"
+autodoc_docstring_signature = False
 autodoc_preserve_defaults = True
 autosummary_generate = True
 napoleon_google_docstring = True
@@ -56,26 +60,66 @@ intersphinx_mapping = {
     "packaging": ("https://packaging.pypa.io/en/stable/", None),
 }
 
-html_theme = "furo"
+html_theme = "sphinx_immaterial"
 html_title = "rigsolve"
-html_baseurl = os.environ.get(
-    "READTHEDOCS_CANONICAL_URL",
-    "https://rigsolve.readthedocs.io/en/latest/",
+html_baseurl = (
+    os.environ.get(
+        "READTHEDOCS_CANONICAL_URL",
+        "https://rigsolve.readthedocs.io/en/latest/",
+    ).rstrip("/")
+    + "/"
 )
+html_logo = "assets/rigsolve-mark.svg"
+html_favicon = "assets/rigsolve-mark.svg"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_theme_options = {
-    "source_repository": "https://github.com/satwiksps/rigsolve/",
-    "source_branch": os.environ.get("READTHEDOCS_GIT_COMMIT_HASH", "main"),
-    "source_directory": "docs/",
-    "light_css_variables": {
-        "color-brand-primary": "#155eef",
-        "color-brand-content": "#155eef",
+    "site_url": html_baseurl,
+    "repo_url": "https://github.com/satwiksps/rigsolve",
+    "repo_name": "satwiksps/rigsolve",
+    "edit_uri": "edit/main/docs/",
+    "globaltoc_collapse": False,
+    "toc_title": "On this page",
+    "font": False,
+    "icon": {
+        "repo": "fontawesome/brands/github",
+        "edit": "material/file-edit-outline",
     },
-    "dark_css_variables": {
-        "color-brand-primary": "#7aa2ff",
-        "color-brand-content": "#8bb0ff",
-    },
+    "features": [
+        "content.action.edit",
+        "content.code.copy",
+        "navigation.sections",
+        "navigation.expand",
+        "navigation.top",
+        "navigation.footer",
+        "search.highlight",
+        "search.share",
+        "search.suggest",
+        "toc.follow",
+        "toc.sticky",
+    ],
+    "palette": [
+        {
+            "media": "(prefers-color-scheme: dark)",
+            "scheme": "slate",
+            "primary": "custom",
+            "accent": "custom",
+            "toggle": {
+                "icon": "material/weather-sunny",
+                "name": "Use light mode",
+            },
+        },
+        {
+            "media": "(prefers-color-scheme: light)",
+            "scheme": "default",
+            "primary": "custom",
+            "accent": "custom",
+            "toggle": {
+                "icon": "material/weather-night",
+                "name": "Use dark mode",
+            },
+        },
+    ],
 }
 html_context = {
     "display_github": True,
@@ -89,8 +133,57 @@ html_show_sourcelink = True
 html_show_sphinx = False
 html_copy_source = False
 
-copybutton_prompt_text = r"^\$ |^>>> |^\.\.\. "
-copybutton_prompt_is_regexp = True
+
+def _prepare_page_urls(_app, pagename, _templatename, context, _doctree):
+    page = context.get("page")
+    pageurl = context.get("pageurl")
+    if isinstance(page, dict) and pageurl:
+        page["canonical_url"] = pageurl
+    if isinstance(page, dict):
+        if pagename.startswith("_modules/"):
+            page["edit_url"] = None
+        elif isinstance(page.get("edit_url"), str):
+            page["edit_url"] = page["edit_url"].replace("\\", "/")
+
+
+def _normalize_autodoc_signature(
+    _app,
+    _what,
+    _name,
+    _obj,
+    _options,
+    signature,
+    return_annotation,
+):
+    if signature:
+        signature = re.sub(r"(?<==)\s*<[^<>]+>", "...", signature)
+    return signature, return_annotation
+
+
+def _remove_generated_dataclass_docstring(
+    _app,
+    what,
+    _name,
+    obj,
+    _options,
+    lines,
+):
+    if what != "class" or not is_dataclass(obj):
+        return
+    generated = f"{obj.__name__}{inspect.signature(obj)}".replace(" -> None", "")
+    if "\n".join(lines).strip() == generated:
+        lines.clear()
+
+
+def setup(app):
+    app.connect("autodoc-process-signature", _normalize_autodoc_signature)
+    app.connect(
+        "autodoc-process-docstring",
+        _remove_generated_dataclass_docstring,
+        priority=100,
+    )
+    app.connect("html-page-context", _prepare_page_urls, priority=800)
+
 
 nitpicky = True
 nitpick_ignore = [

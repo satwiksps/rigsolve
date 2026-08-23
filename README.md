@@ -1,17 +1,29 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/satwiksps/rigsolve/main/docs/assets/rigsolve-banner.svg" alt="rigsolve turns a GPU target into a compatible torch, CUDA, and extension plan." width="100%">
-</p>
+<div align="center">
+  <h1 align="center">rigsolve</h1>
+  <p>
+    <img src="https://raw.githubusercontent.com/satwiksps/rigsolve/main/docs/assets/rigsolve-banner.svg" alt="rigsolve turns a GPU target into a compatible torch, CUDA, and extension plan." width="100%">
+  </p>
+  <p><strong>rigsolve is an offline-first compatibility resolver for PyTorch, CUDA, and native GPU extensions.</strong></p>
+  <p>
+    <a href="https://rigsolve.vercel.app/">Website</a> |
+    <a href="https://rigsolve.readthedocs.io/en/latest/">Documentation</a> |
+    <a href="https://rigsolve.readthedocs.io/en/latest/getting-started/quickstart/">Quickstart</a> |
+    <a href="https://rigsolve.readthedocs.io/en/latest/cli/">CLI reference</a> |
+    <a href="https://rigsolve.readthedocs.io/en/latest/reference/python-api/">Python API</a> |
+    <a href="https://rigsolve.readthedocs.io/en/latest/trust-model/">Trust model</a> |
+    <a href="https://github.com/satwiksps/rigsolve/blob/main/CONTRIBUTING.md">Contributing</a>
+  </p>
+  <p>
+    <a href="https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml"><img src="https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+    <a href="https://codecov.io/gh/satwiksps/rigsolve"><img src="https://codecov.io/gh/satwiksps/rigsolve/graph/badge.svg" alt="Codecov"></a>
+    <a href="https://rigsolve.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/rigsolve/badge/?version=latest" alt="Documentation"></a>
+    <a href="https://pypi.org/project/rigsolve/"><img src="https://img.shields.io/pypi/v/rigsolve.svg" alt="PyPI"></a>
+    <a href="https://pypi.org/project/rigsolve/"><img src="https://img.shields.io/pypi/pyversions/rigsolve.svg" alt="Python"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License: Apache-2.0"></a>
+  </p>
+</div>
 
-# rigsolve
-
-[![CI](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml/badge.svg)](https://github.com/satwiksps/rigsolve/actions/workflows/ci.yml)
-[![Codecov](https://codecov.io/gh/satwiksps/rigsolve/graph/badge.svg)](https://codecov.io/gh/satwiksps/rigsolve)
-[![Documentation](https://readthedocs.org/projects/rigsolve/badge/?version=latest)](https://rigsolve.readthedocs.io/en/latest/)
-[![PyPI](https://img.shields.io/pypi/v/rigsolve.svg)](https://pypi.org/project/rigsolve/)
-[![Python](https://img.shields.io/pypi/pyversions/rigsolve.svg)](https://pypi.org/project/rigsolve/)
-[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-
-**rigsolve is an offline-first compatibility resolver for PyTorch, CUDA, and native GPU extensions.** It profiles a machine without importing torch, evaluates the relevant compatibility constraints together, and produces a sourced install or repair plan.
+It profiles a machine without importing torch, evaluates the relevant compatibility constraints together, and produces a sourced install or repair plan.
 
 ## Why rigsolve
 
