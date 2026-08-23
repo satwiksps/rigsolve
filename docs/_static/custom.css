@@ -19,6 +19,7 @@
 [data-md-color-scheme="slate"] {
   --rigsolve-blue: #7aa2ff;
   --md-default-bg-color: #0b0f17;
+  --md-default-fg-color: #d8dee9;
   --md-code-bg-color: #111827;
   --md-primary-fg-color: #111827;
   --md-primary-fg-color--light: #1f2937;
@@ -63,6 +64,10 @@
   min-width: 0;
 }
 
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+}
+
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
@@ -72,6 +77,11 @@
 
 .md-typeset code.literal {
   border-radius: 0.25rem;
+}
+
+.md-typeset code,
+.md-typeset pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 .md-typeset .highlight,
@@ -98,10 +108,25 @@
   font-weight: 650;
 }
 
+.md-typeset .sd-btn {
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+.md-typeset .hero-actions {
+  max-width: 25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .md-typeset table.data:not(.plain) {
   font-size: 0.72rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 0 1px var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
 }
 
 .md-typeset dl.objdesc > dt {

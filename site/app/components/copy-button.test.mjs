@@ -6,8 +6,8 @@ import vm from "node:vm";
 import ts from "typescript";
 
 function loadCopyText(document) {
-  const component = new URL("./TerminalDemo.tsx", import.meta.url);
-  const source = `${readFileSync(component, "utf8")}\nexport { copyText as copyTextForTest };`;
+  const component = new URL("./copy-button.tsx", import.meta.url);
+  const source = readFileSync(component, "utf8");
   const output = ts.transpileModule(source, {
     compilerOptions: {
       jsx: ts.JsxEmit.ReactJSX,
@@ -24,7 +24,7 @@ function loadCopyText(document) {
     require: () => ({}),
   });
   vm.runInContext(output, context, { filename: component.pathname });
-  return loaded.exports.copyTextForTest;
+  return loaded.exports.copyText;
 }
 
 test("legacy clipboard fallback rejects a reported copy failure", async () => {

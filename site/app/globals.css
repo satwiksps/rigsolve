@@ -1,65 +1,60 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --font-sans:
+    "Inter", "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-mono:
+    "SFMono-Regular", "Cascadia Code", "Roboto Mono", Consolas, monospace;
 }
 
 :root {
   color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
+  background: #09090b;
 }
 
 html {
-  background: #080a0d;
   scroll-behavior: smooth;
+  background: #09090b;
 }
 
 body {
-  background:
-    radial-gradient(
-      circle at 50% -15%,
-      rgba(115, 183, 255, 0.08),
-      transparent 32rem
-    ),
-    #080a0d;
-  color: #f2f4f7;
-  min-width: 320px;
+  margin: 0;
+  background: #09090b;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(115, 183, 255, 0.25);
-  color: #ffffff;
+  background: rgb(96 165 250 / 28%);
+  color: #fff;
 }
 
-button,
-a {
+a,
+button {
   -webkit-tap-highlight-color: transparent;
 }
 
 :focus-visible {
-  outline: 2px solid #73b7ff;
+  outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
 
-.skip-link {
-  background: #f2f4f7;
-  color: #080a0d;
-  left: 1rem;
-  padding: 0.75rem 1rem;
-  position: fixed;
-  top: 0.75rem;
-  transform: translateY(-180%);
-  transition: transform 150ms ease;
-  z-index: 100;
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 3.2%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 3.2%) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgb(59 130 246 / 12%), transparent 52%);
+  background-size:
+    56px 56px,
+    56px 56px,
+    100% 100%;
+  mask-image: linear-gradient(to bottom, black 0%, black 48%, transparent 100%);
 }
 
-.skip-link:focus {
-  transform: translateY(0);
+pre {
+  scrollbar-color: rgb(63 63 70) transparent;
+  scrollbar-width: thin;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -71,13 +66,19 @@ a {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-@media (prefers-reduced-transparency: reduce) {
-  header {
-    backdrop-filter: none !important;
-    background: #080a0d !important;
+@media (forced-colors: active) {
+  .hero-grid {
+    display: none;
+  }
+
+  a,
+  button {
+    forced-color-adjust: auto;
   }
 }
