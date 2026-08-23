@@ -81,6 +81,12 @@ const installCommand = [
   "rigsolve detect",
 ].join("\n");
 
+const heroCommand = [
+  "rigsolve solve \\",
+  "  --want 'flash-attn==2.8.3' \\",
+  "  --target 'RTX 4090,driver=580.65,python=3.12,linux'",
+].join("\n");
+
 const quickstartUrl = documentationUrl + "getting-started/quickstart/";
 const trustModelUrl = documentationUrl + "trust-model/";
 const securityUrl = repositoryUrl + "/blob/main/SECURITY.md";
@@ -191,146 +197,99 @@ export default function Home() {
                 </a>
               </div>
               <p className="mt-5 text-sm text-zinc-400">
-                Detection and solving are offline. No telemetry, torch import,
-                or installation by default.
+                Detection avoids importing torch. Solving is offline and never
+                installs packages by default.
               </p>
             </div>
 
             <div id="product" className="mt-14 scroll-mt-24 lg:mt-16">
               <figure className="overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0f] shadow-[0_32px_100px_rgba(0,0,0,0.55)]">
                 <figcaption className="sr-only">
-                  Example rigsolve compatibility plan
+                  Real rigsolve terminal output for an RTX 4090 compatibility
+                  plan
                 </figcaption>
                 <div className="flex h-12 items-center justify-between border-b border-white/[0.07] bg-[#111114] px-4 sm:px-5">
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="grid size-6 shrink-0 place-items-center rounded border border-white/10 bg-white/[0.03] font-mono text-[9px] font-bold text-blue-300">
-                      r_
-                    </span>
                     <span className="truncate text-xs font-medium text-zinc-300">
-                      Compatibility plan
+                      Terminal
                     </span>
                     <span className="hidden text-xs text-zinc-400 sm:inline">
                       /
                     </span>
                     <span className="hidden font-mono text-[11px] text-zinc-400 sm:inline">
-                      RTX 4090, driver 580.65, Python 3.12
+                      RTX 4090 example
                     </span>
                   </div>
-                  <span className="flex shrink-0 items-center gap-2 font-mono text-[10px] text-emerald-300">
-                    <i
-                      className="size-1.5 rounded-full bg-emerald-400"
-                      aria-hidden="true"
-                    />
-                    PLAN READY
-                  </span>
+                  <CopyButton value={heroCommand} label="Copy solve example" />
                 </div>
 
-                <div className="grid lg:grid-cols-[minmax(0,1fr)_360px]">
-                  <div className="min-w-0">
-                    <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3 sm:px-5">
-                      <span className="font-mono text-[11px] text-zinc-400">
-                        resolved stack
-                      </span>
-                      <span className="font-mono text-[10px] text-zinc-400">
-                        matrix 2026.08.15
-                      </span>
+                <div className="grid lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="min-w-0 overflow-x-auto p-5 font-mono text-[11px] leading-6 sm:p-7 sm:text-xs">
+                    <div className="flex min-w-[690px] gap-3">
+                      <span className="text-blue-300 select-none">$</span>
+                      <pre className="text-zinc-200">
+                        <code>{heroCommand}</code>
+                      </pre>
                     </div>
-                    <div className="overflow-x-auto py-5 font-mono text-[11px] leading-7 sm:py-7 sm:text-[13px]">
-                      {[
-                        [
-                          "target",
-                          "linux x86_64 / sm_89 / Python 3.12",
-                          "text-zinc-400",
-                        ],
-                        [
-                          "driver",
-                          "580.65 / CUDA runtime supported",
-                          "text-zinc-400",
-                        ],
-                        ["torch", "2.9.0 / cu126", "text-emerald-200"],
-                        [
-                          "flash-attn",
-                          "2.8.3 / torch 2.9 / cxx11abiTRUE",
-                          "text-emerald-200",
-                        ],
-                      ].map(([label, value, tone], index) => (
-                        <div
-                          className={
-                            "grid min-w-[590px] grid-cols-[150px_1fr] border-y border-white/[0.04] px-4 sm:px-5 " +
-                            tone +
-                            (index > 1 ? " bg-emerald-400/[0.045]" : "")
-                          }
-                          key={label}
-                        >
-                          <span>{label}</span>
-                          <code>{value}</code>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="border-t border-white/[0.07] bg-black/20 px-4 py-4 font-mono text-[11px] sm:px-5 sm:text-xs">
-                      <div className="flex gap-3">
-                        <span className="text-blue-300 select-none">$</span>
-                        <code className="text-zinc-300">
-                          rigsolve solve --want flash-attn==2.8.3
-                        </code>
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-zinc-400">
-                        <span>
-                          <b className="font-medium text-emerald-300">
-                            1 solution
-                          </b>
-                        </span>
-                        <span>review only</span>
-                        <span>pip, uv, TOML, Docker, JSON, and Colab</span>
-                      </div>
+                    <div className="mt-6 min-w-[690px] space-y-1 border-t border-white/[0.07] pt-6">
+                      <p className="text-zinc-400">
+                        # Generated by rigsolve; review before running.
+                      </p>
+                      <p className="text-zinc-400">
+                        # Matrix 2026.08.15 (1e066bd53f01); evidence:
+                        metadata-backed.
+                      </p>
+                      <p className="text-amber-200/80">
+                        # WARNING: selected versions are metadata-backed; use
+                        --execute to install and verify them on this machine
+                      </p>
+                      <p className="text-amber-200/80">
+                        # WARNING: flash-attn&apos;s wheel filename does not
+                        establish GPU kernel coverage for sm_89
+                      </p>
+                      <p className="pt-3 text-emerald-200">
+                        python -m pip install --index-url
+                        https://download.pytorch.org/whl/cu126 torch==2.9.0
+                      </p>
+                      <p className="text-emerald-200">
+                        python -m pip install
+                        &apos;https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3%2Bcu12torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl#sha256=4e2f9e39313266b1544b68138b15b91ee6221eccf14f7902b7c6620351340810&apos;
+                      </p>
                     </div>
                   </div>
 
-                  <aside className="border-t border-white/[0.07] bg-[#0a0a0d] lg:border-t-0 lg:border-l">
-                    <div className="flex h-12 items-center justify-between border-b border-white/[0.07] px-5">
-                      <span className="text-xs font-medium text-zinc-300">
-                        Resolution summary
-                      </span>
-                      <span className="grid size-5 place-items-center rounded bg-white/[0.06] font-mono text-[10px] text-zinc-400">
-                        L0
-                      </span>
-                    </div>
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 font-mono text-[10px] font-semibold tracking-wider uppercase">
-                        <span className="text-emerald-300">Compatible</span>
-                        <span className="text-zinc-700">/</span>
-                        <span className="text-blue-300">metadata-backed</span>
-                      </div>
-                      <p className="mt-4 text-base font-semibold text-white">
-                        One CUDA line across the stack
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-zinc-400">
-                        The selected driver, torch build, Python ABI, and
-                        extension constraints resolve together.
-                      </p>
-                      <div className="mt-5 rounded-md border border-white/[0.07] bg-black/20">
-                        <div className="border-b border-white/[0.06] px-3 py-2 font-mono text-[9px] tracking-wider text-zinc-400 uppercase">
-                          Evidence
-                        </div>
-                        <div className="space-y-2 px-3 py-3 font-mono text-[10px]">
-                          <code className="block truncate text-zinc-300">
-                            driver supports selected runtime
-                          </code>
-                          <code className="block truncate text-zinc-300">
-                            published wheels match Python 3.12
-                          </code>
-                        </div>
-                      </div>
-                      <div className="mt-5 border-l-2 border-blue-400/50 pl-3">
-                        <span className="font-mono text-[9px] tracking-wider text-zinc-400 uppercase">
-                          Limit
-                        </span>
-                        <p className="mt-1.5 text-xs leading-5 text-zinc-400">
-                          Metadata does not prove that every GPU kernel will
-                          run. Verify after installation.
-                        </p>
-                      </div>
-                    </div>
+                  <aside className="border-t border-white/[0.07] bg-[#0a0a0d] p-5 sm:p-6 lg:border-t-0 lg:border-l">
+                    <p className="font-mono text-[10px] font-semibold tracking-[0.14em] text-blue-300 uppercase">
+                      What this output means
+                    </p>
+                    <ul className="mt-5 space-y-5">
+                      {[
+                        [
+                          "Nothing changed",
+                          "The default result is a plan for review, not an installation.",
+                        ],
+                        [
+                          "Constraints agree",
+                          "The driver, CUDA line, Python ABI, torch build, and extension wheel resolve together.",
+                        ],
+                        [
+                          "Limits stay visible",
+                          "The wheel metadata does not prove that every GPU kernel will run on sm_89.",
+                        ],
+                      ].map(([title, description]) => (
+                        <li
+                          className="border-l border-white/10 pl-4"
+                          key={title}
+                        >
+                          <strong className="block text-xs font-medium text-zinc-200">
+                            {title}
+                          </strong>
+                          <span className="mt-1.5 block text-xs leading-5 text-zinc-400">
+                            {description}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </aside>
                 </div>
               </figure>
@@ -569,7 +528,7 @@ export default function Home() {
                 </ol>
                 <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-white/[0.07] pt-6 text-xs text-zinc-400 sm:grid-cols-4">
                   {[
-                    "No torch import",
+                    "No torch import during detection",
                     "No telemetry",
                     "No default install",
                     "No hidden fallback",
@@ -703,7 +662,7 @@ export default function Home() {
         </div>
         <div className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-white/[0.05] px-5 py-5 font-mono text-[11px] text-zinc-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <span>Apache License 2.0</span>
-          <span>{RELEASE_REF}, deterministic and offline</span>
+          <span>{RELEASE_REF}, offline solving by default</span>
         </div>
       </footer>
 

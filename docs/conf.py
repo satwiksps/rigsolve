@@ -69,7 +69,6 @@ html_baseurl = (
     ).rstrip("/")
     + "/"
 )
-html_logo = "assets/rigsolve-mark.svg"
 html_favicon = "assets/rigsolve-mark.svg"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]

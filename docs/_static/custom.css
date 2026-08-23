@@ -34,10 +34,24 @@
   box-shadow: none;
 }
 
-.md-header__button.md-logo img,
-.md-header__button.md-logo svg {
-  width: 1.2rem;
-  height: 1.2rem;
+.rigsolve-home-link,
+.rigsolve-nav-home {
+  color: inherit;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.rigsolve-home-link {
+  width: auto;
+  padding-right: 0.45rem;
+  padding-left: 0.45rem;
+  font-size: 0.8rem;
+}
+
+.rigsolve-nav-home {
+  display: inline-flex !important;
+  align-items: center;
 }
 
 .md-header__title {
