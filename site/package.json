@@ -17,28 +17,28 @@
     "test": "npm run test:unit && npm run format:check && npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
-    "next": "16.3.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
-    "@next/eslint-plugin-next": "16.3.1",
+    "@next/eslint-plugin-next": "16.3.6",
     "@tailwindcss/postcss": "4.3.3",
-    "@types/node": "22.20.1",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
+    "@types/node": "22.20.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "16.5.0",
-    "postcss": "8.5.26",
-    "prettier": "3.9.6",
+    "postcss": "8.5.28",
+    "prettier": "3.9.9",
     "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.67.0"
+    "typescript-eslint": "8.70.1"
   },
   "type": "module"
 }
